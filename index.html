@@ -29,13 +29,8 @@
   <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
 
-  /* Set up the initial map center and zoom level */
-  var map = L.map('map', {
-    center: [24.00, 77.00], // EDIT coordinates to re-center map
-    zoom: 5,  // EDIT from 1 (zoomed out) to 18 (zoomed in)
-    scrollWheelZoom: false,
-    tap: false
-  });
+  /* Set up the initial map center and zoom level */    
+  var map = L.map('map').setView([24.00, 77.00], 5);
   
   /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
