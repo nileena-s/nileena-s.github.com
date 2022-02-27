@@ -60,7 +60,7 @@
       
       var circle = L.circle([row.Latitude, row.Longitude], {
       color: row.Colour,
-      fillColor: '#f03',
+      fillColor: row.ColourFill,
       fillOpacity: 0.5,
       radius: 10000
       }).bindPopup(row.Title);
