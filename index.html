@@ -57,12 +57,15 @@
     // For each row, columns `Latitude`, `Longitude`, and `Title` are required
     for (var i in data) {
       var row = data[i];
-
-      var marker = L.marker([row.Latitude, row.Longitude], {
-        opacity: 1
+      
+      var circle = L.circle([row.Latitude, row.Longitude], {
+      color: 'red',
+      fillColor: '#f03',
+      fillOpacity: 0.5,
+      radius: 200
       }).bindPopup(row.Title);
       
-      marker.addTo(map);
+      circle.addTo(map);
     }
 
   });
