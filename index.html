@@ -59,10 +59,10 @@
       var row = data[i];
       
       var circle = L.circle([row.Latitude, row.Longitude], {
-      color: 'red',
+      color: row.Colour,
       fillColor: '#f03',
       fillOpacity: 0.5,
-      radius: 200
+      radius: 500
       }).bindPopup(row.Title);
       
       circle.addTo(map);
