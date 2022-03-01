@@ -85,20 +85,7 @@ permalink: /status-2013/
       
         classC.addTo(map);
       }
-    }
-
-  });
-    
-  // Read markers data from data.csv
-  $.get('./river-classC-2013-28Feb.csv', function(csvString) {
-
-    // Use PapaParse to convert string to array of objects
-    var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
-
-    // For each row in data, create a marker and add it to the map
-    // For each row, columns `Latitude`, `Longitude`, and `Title` are required
-    for (var i in data) {
-      var row = data[i];
+      
       if (row.group == "NOT Class C") {
         var notclassC = L.circle([row.Latitude, row.Longitude], {
         stroke: false,
@@ -110,19 +97,21 @@ permalink: /status-2013/
       
         notclassC.addTo(map);
       }
+      
     }
-
-  });
     
-  $("#classC").click(function() {
-    map.addLayer(classC)
-    map.removeLayer(notclassC)
+    
+    $("#classC").click(function() {
+      map.addLayer(classC)
+      map.removeLayer(notclassC)
 
-  });
- 
-  $("#NOTclassC").click(function() {
-    map.addLayer(notclassC)
-    map.removeLayer(classC)
+    });
+
+    $("#NOTclassC").click(function() {
+      map.addLayer(notclassC)
+      map.removeLayer(classC)
+
+    });
 
   });
     
