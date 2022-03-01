@@ -62,13 +62,14 @@ permalink: /status-2013/
     // For each row, columns `Latitude`, `Longitude`, and `Title` are required
     for (var i in data) {
       var row = data[i];
-      
-      var circle = L.circle([row.Latitude, row.Longitude], {
-      stroke: false,
-      color: row.Colour,
-      fillColor: row.ColourFill,
-      fillOpacity: 0.5,
-      radius: 15000
+      if (row.group == "Class C") {
+        var classC = L.circle([row.Latitude, row.Longitude], {
+        stroke: false,
+        color: row.Colour,
+        fillColor: row.ColourFill,
+        fillOpacity: 0.5,
+        radius: 15000
+        }
       }).bindPopup(row.Title);
       
       circle.addTo(map);
