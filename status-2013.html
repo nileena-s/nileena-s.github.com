@@ -20,6 +20,9 @@ permalink: /status-2013/
   <!-- Load jQuery and PapaParse to read data from a CSV file -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+  
+  <!-- Bootstrap for button -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 
   <!-- Position the map and title with Cascading Style Sheet (CSS) -->
@@ -36,6 +39,13 @@ permalink: /status-2013/
   <!-- Display the map and title with HTML division tags  -->
   <div id="map-title">River Tracker</div>
   <div id="map"></div>
+  
+  <!-- Button -->
+  <div class="btn-group">
+    <button type="button" id="classC" class="btn btn-success">Valid Class C</button>
+    <button type="button" id="NOTclassC" class="btn btn-primary">Polluted</button>
+  </div>
+  
   <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
 
@@ -76,7 +86,44 @@ permalink: /status-2013/
     }
 
   });
+    
+  // Read markers data from data.csv
+  $.get('./river-classC-2013-28Feb.csv', function(csvString) {
 
+    // Use PapaParse to convert string to array of objects
+    var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
+
+    // For each row in data, create a marker and add it to the map
+    // For each row, columns `Latitude`, `Longitude`, and `Title` are required
+    for (var i in data) {
+      var row = data[i];
+      if (row.group == "NOT Class C") {
+        var notclassC = L.circle([row.Latitude, row.Longitude], {
+        stroke: false,
+        color: row.Colour,
+        fillColor: row.ColourFill,
+        fillOpacity: 0.5,
+        radius: 15000
+        }).bindPopup(row.Title);
+      
+        notclassC.addTo(map);
+      }
+    }
+
+  });
+    
+  $("#classC").click(function() {
+    map.addLayer(classC)
+    map.removeLayer(others)
+
+  });
+ 
+  $("#NOTclassC").click(function() {
+    map.addLayer(notclassC)
+    map.removeLayer(others)
+
+  });
+    
   </script>
 </body>
 </html>
