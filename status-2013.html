@@ -64,6 +64,7 @@ permalink: /status-2013/
       var row = data[i];
       
       var circle = L.circle([row.Latitude, row.Longitude], {
+      stroke: false,
       color: row.Colour,
       fillColor: row.ColourFill,
       fillOpacity: 0.5,
