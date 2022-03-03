@@ -35,7 +35,7 @@
   <!-- Button -->
   <div class="btn-group">
     <button type="button" id="classC" class="btn btn-success">Valid Class C</button>
-    <button type="button" id="NOTclassC" class="btn btn-primary">Polluted</button>
+    <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>
   </div>
   
   <!-- Display the map and title with HTML division tags  -->
@@ -96,14 +96,14 @@
     }
     
     
-    $("#classC").click(function() {
+    $("#classC").on('click', function(e) {
       map.addLayer(classC)
-      map.removeLayer(notclassC)
+      map.removeLayer(nclassC)
 
     });
 
-    $("#NOTclassC").click(function() {
-      map.addLayer(notclassC)
+    $("#nclassC").click(function() {
+      map.addLayer(nclassC)
       map.removeLayer(classC)
 
     });
