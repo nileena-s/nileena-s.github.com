@@ -34,8 +34,8 @@
   
   <!-- Button -->
   <div class="btn-group">
-    <button type="button" id="classC" onclick="Action1()" class="btn btn-success">Valid Class C</button>
-    <button type="button" id="nclassC" onclick="Action2()" class="btn btn-primary">Polluted</button>
+    <button type="button" id="classC" class="btn btn-success">Valid Class C</button>
+    <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>
   </div>
   
   <!-- Display the map and title with HTML division tags  -->
@@ -45,15 +45,6 @@
   
   <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
-  function Action1() {
-    addLayer(classC);
-    removeLayer(nclassc);
-    }
-    
-  function Action2() {
-    addLayer(nclassC);
-    removeLayer(classc);
-    }
   
   /* Set up the initial map center and zoom level */    
   var map = L.map('map').setView([24.00, 77.00], 5);
@@ -103,13 +94,17 @@
       }
       
     }
-    
-    
-  );
-
-  );
 
   });
+  function Action1() {
+  addLayer(classC);
+  removeLayer(nclassc);
+  }
+
+function Action2() {
+  addLayer(nclassC);
+  removeLayer(classc);
+  }
     
   </script>
 </body>
