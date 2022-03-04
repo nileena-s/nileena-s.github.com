@@ -29,20 +29,6 @@
   
   </style>
   
-  <script>
-    
-    function Action1() {
-            addLayer(classC);
-            removeLayer(nclassc);
-    }
-    
-    function Action2() {
-            addLayer(nclassC);
-            removeLayer(classc);
-    }
-    
-  </script>
-  
 </head>
 <body>
   
@@ -59,7 +45,16 @@
   
   <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
-
+  function Action1() {
+    addLayer(classC);
+    removeLayer(nclassc);
+    }
+    
+  function Action2() {
+    addLayer(nclassC);
+    removeLayer(classc);
+    }
+  
   /* Set up the initial map center and zoom level */    
   var map = L.map('map').setView([24.00, 77.00], 5);
     
