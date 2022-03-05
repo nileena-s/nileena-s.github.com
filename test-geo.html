@@ -58,10 +58,15 @@ permalink: /test-geo/
     accessToken: 'pk.eyJ1IjoiaW5kaWFzcGVuZCIsImEiOiJjbDA0ODZ2dTkwODYxM2ludGJiZTVqYjl2In0.2Hr6ByYsG-UumMoJiaCAFQ'
   }).addTo(map);
   
-  // loading GeoJSON file - Here my html and usa_adm.geojson file resides in same folder
+  // loading GeoJSON file - Here my html and river-classC-test1-5mar.geojson file resides in same folder
   $.getJSON("river-classC-test1-5mar.geojson",function(data){
-  // L.geoJson function is used to parse geojson file and load on to map
-  L.geoJson(data).addTo(newMap);
+  // add GeoJSON layer to the map once the file is loaded
+  var datalayer = L.geoJson(data ,{
+    onEachFeature: function(feature, featureLayer) {
+      featureLayer.bindPopup(feature.properties.Title);
+    }
+    }).addTo(map);
+    map.fitBounds(datalayer.getBounds());
   });
  
   </script>
