@@ -1,0 +1,181 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 85.668239,25.484321 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10113,
+    "Title":"RIVER GANGA AT U/S JAIL GHAT, BUXAR",
+    "river":"RIVER GANGA",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 84.963161,25.740235 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10114,
+    "Title":"RIVER GANGA TA MAA AMBIKA ASTHAN, AAMI, SARAN",
+    "river":"RIVER GANGA",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 85.179995,25.620356 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10115,
+    "Title":"RIVER GANGA TA GULABI GHAT, PATNA",
+    "river":"RIVER GANGA",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 85.301372,25.515132 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10122,
+    "Title":"RIVER GANGA AT TRIVENI GHAT, PATNA",
+    "river":"RIVER GANGA",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 85.194604,25.678586 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10126,
+    "Title":"GANDAK AT KONHARA GHAT, VAISHALI",
+    "river":"GANDAK",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 85.56,24.890805 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10130,
+    "Title":"RIVER GANGA AT D/S NAWADGHAT, BARH, PATNA",
+    "river":"RIVER GANGA",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 84.693046,25.586863 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10131,
+    "Title":"RIVE GANGA AT U/S BARAHPUR BINDTOLI",
+    "river":"RIVE GANGA",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 86.925987,25.242256 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10138,
+    "Title":"RIVER GANGA AT CHAMPANAGAR, BHAGALPUR",
+    "river":"RIVER GANGA",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 83.014205,25.31074 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10143,
+    "Title":"RIVER GANGA D/S NEAR CREMATION GHAT",
+    "river":"RIVER GANGA",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 84.785773,25.68032 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10162,
+    "Title":"GANGA AT ARA-CHHAPRA ROAD BRIDGE (KOILWER BANURA- CHHAPRA ROAD)",
+    "river":"GANGA",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ 85.195574,25.692357 ]
+    },
+    "properties": {
+    "group":"NOT Class C",
+    "WQSC":10163,
+    "Title":"GANDAK AT ROAD BRIDGE, U/S HAJIPUR",
+    "river":"GANDAK",
+    "state":"BIHAR",
+    "Colour":"red",
+    "ColourFill":"#f03"
+    }
+  }
+]
+}
