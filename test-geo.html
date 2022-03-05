@@ -1,3 +1,7 @@
+layout: page
+title: test-geo.html
+permalink: /test-geo/
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,10 +23,11 @@
   
   <!-- Bootstrap for button -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   <!-- Position the map and title with Cascading Style Sheet (CSS) -->
-  <style>
+  <style type="text/css">
   #map { position: absolute; width:600px; height:800px; }
   #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }  
   button {  position: relative; margin-top: 10px; margin-left: 200px; }
@@ -44,7 +49,7 @@
  
   
   <!-- Create the interactive map content with JavaScript (.js) -->
-  <script>
+  <script type="text/javascript">
   
   /* Set up the initial map center and zoom level */    
   var map = L.map('map').setView([24.00, 77.00], 5);
@@ -59,53 +64,32 @@
     accessToken: 'pk.eyJ1IjoiaW5kaWFzcGVuZCIsImEiOiJjbDA0ODZ2dTkwODYxM2ludGJiZTVqYjl2In0.2Hr6ByYsG-UumMoJiaCAFQ'
   }).addTo(map);
 
-  // Read markers data from data.csv
-  $.get('./river-classC-2013-28Feb.csv', function(csvString) {
-
-    // Use PapaParse to convert string to array of objects
-    var data = Papa.parse(csvString, {header: true, dynamicTyping: true}).data;
-
-    // For each row in data, create a marker and add it to the map
-    // For each row, columns `Latitude`, `Longitude`, and `Title` are required
-    for (var i in data) {
-      var row = data[i];
-      if (row.group == "Class C") {
-        var classC = L.circle([row.Latitude, row.Longitude], {
-        stroke: false,
-        color: row.Colour,
-        fillColor: row.ColourFill,
-        fillOpacity: 0.5,
-        radius: 15000
-        }).bindPopup(row.Title);
-      
-        classC.addTo(map);
+  var promise = $.getJSON("river-classC-test1-5mar.json");
+  promise.then(function(data) {
+    var nclassC = L.geoJson(data, {
+      filter: function(feature, layer) {
+          return feature.properties.group == "NOT Class C";
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.circle(latlng, {
+          stroke: false,
+          color: row.Colour,
+          fillColor: row.ColourFill,
+          fillOpacity: 0.5,
+          radius: 15000
+          }).on('mouseover', function() {
+            this.bindPopup(feature.properties.Title).openPopup();
+          });
       }
-      
-      if (row.group == "NOT Class C") {
-        var notclassC = L.circle([row.Latitude, row.Longitude], {
-        stroke: false,
-        color: row.Colour,
-        fillColor: row.ColourFill,
-        fillOpacity: 0.5,
-        radius: 15000
-        }).bindPopup(row.Title);
-      
-        nclassC.addTo(map);
-      }
-      
-    }
-
+    });
+    nclassC.addTo(map)   
+    $("#nclassC").click(function() {
+      map.addLayer(nclassC)
+    });
+    $("#classC").click(function() {
+      map.removeLayer(nclassC)
+    });
   });
-  function Action1() {
-  addLayer(classC);
-  removeLayer(nclassc);
-  }
-
-function Action2() {
-  addLayer(nclassC);
-  removeLayer(classc);
-  }
-    
   </script>
 </body>
 </html>
