@@ -61,7 +61,7 @@ permalink: /test-geo/
   // loading GeoJSON file - Here my html and river-classC-test1-5mar.geojson file resides in same folder
   $.getJSON("river-classC-test1-5mar.geojson",function(data){
   // add GeoJSON layer to the map once the file is loaded
-  var datalayer = L.geoJson(data ,{
+  var datalayer = L.geoJSON(data ,{
     onEachFeature: function(feature, featureLayer) {
       featureLayer.bindPopup(feature.properties.Title);
     }
