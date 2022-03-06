@@ -33,25 +33,16 @@
   
     <!-- Button -->
   <div class="btn-group">
-    <button type="button" id="all" class="btn btn-primary">All Water Stations</button>
-    <button type="button" id="classC" class="btn btn-primary">Class C</button>
-    <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>
-  </div>
+  <button type="button" id="all" class="btn btn-primary">All Water Stations</button>
+  <button type="button" id="classC" class="btn btn-primary">Class C</button>
+  <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>
   
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-    <label class="form-check-label" for="flexRadioDefault1">
-      2013
-    </label>
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-    <label class="form-check-label" for="flexRadioDefault2">
-      2019
-    </label>
+  <label class="radio-inline"><input type="radio" name="optradio" id="optradio" value="2019" checked>2019</label>
+  <label class="radio-inline"><input type="radio" name="optradio" id="optradio" value="2016">2016</label>
+  <label class="radio-inline"><input type="radio" name="optradio" id="optradio" value="2013">2013</label>
+
   </div>
 
-  
   <!-- Display the map and title with HTML division tags  -->
   <div id="map-title">River Tracker</div>
   <div id="map"></div>
@@ -62,6 +53,8 @@
   
   /* Set up the initial map center and zoom level */    
   var map = L.map('map').setView([24.00, 77.00], 5);
+    
+  var year_check = $('#optradio input:radio:checked').val()
         
   /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
   L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -97,7 +90,7 @@
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
     var NOTgroupC = L.geoJson(data, {
       filter: function(feature, layer)  {
-        if (year_slider == "2013")  {
+        if (year_check == "2013")  {
           return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
         }
         else  {
@@ -111,7 +104,7 @@
     
     var groupC = L.geoJson(data, {
       filter: function(feature, layer)  {
-        if (year_slider == "2013")  {
+        if (year_check == "2013")  {
           return (feature.properties.group == "Class C" && feature.properties.Year == "2013");
         }
         else  {
