@@ -1,7 +1,3 @@
-layout: page
-title: test-geo.html
-permalink: /test-geo/
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +25,7 @@ permalink: /test-geo/
   <style>
   #map { position: absolute; width:600px; height:800px; }
   #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }  
-  button {  position: relative; margin-top: 10px; margin-left: 200px; }
+  button {  position: relative; margin-top: 10px; margin-left: 500px; }
   </style>
   
 </head>
@@ -37,7 +33,8 @@ permalink: /test-geo/
   
     <!-- Button -->
   <div class="btn-group">
-    <button type="button" id="classC" class="btn btn-primary">Valid Class C</button>
+    <button type="button" id="all" class="btn btn-primary">All Water Stations</button>
+    <button type="button" id="classC" class="btn btn-primary">Class C</button>
     <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>
   </div>
   
@@ -103,6 +100,10 @@ permalink: /test-geo/
     }).addTo(map);    
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
+    $("#all").click(function() {
+        map.addLayer(groupC)
+        map.addLayer(NOTgroupC)
+    });
     $("#classC").click(function() {
         map.addLayer(groupC)
         map.removeLayer(NOTgroupC)
