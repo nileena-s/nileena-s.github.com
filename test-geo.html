@@ -26,6 +26,22 @@
   #map { position: absolute; width:600px; height:800px; }
   #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }  
   button {  position: relative; margin-top: 10px; margin-left: 500px; }
+  .slidecontainer { width: 100%;  }
+  
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 25px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+
+  .slider:hover {
+    opacity: 1;
+  }
   </style>
   
 </head>
@@ -38,15 +54,11 @@
     <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>
   </div>
   
-  <div class="container">
-  <form>
-    <div class="form-group">
-      <label for="formControlRange">Select Year</label>
-      <input type="range" class="form-control-range" id="formControlRange" onInput="$('#rangeval').html($(this).val())">
-      <span id="rangeval">2019<!-- Default value --></span>
-    </div>
-  </form>
+  <div class="slidecontainer">
+    <p>Select Year:</p>
+    <input type="range" min="1" max="2" value="2013">
   </div>
+
   
   <!-- Display the map and title with HTML division tags  -->
   <div id="map-title">River Tracker</div>
