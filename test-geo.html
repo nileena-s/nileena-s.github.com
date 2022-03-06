@@ -73,7 +73,7 @@ permalink: /test-geo/
 
     // create an options object that specifies which function will called on each feature
     var myLayerOptions = {
-      pointToLayer: function(feature, latlng) {
+      pointToLayer: function (Feature, latlng) {
         return L.circleMarker(latlng, myLayerStyle)
     };
 
