@@ -108,10 +108,10 @@
     var NOTgroupC = L.geoJson(data, {
       filter: function(feature, layer)  {
         if (year_slider == "2013")  {
-          return (feature.properties.group == "NOT Class C" && feature.properties.year == "2013");
+          return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
         }
         else  {
-          return (feature.properties.group == "NOT Class C" && feature.properties.year == "2019");
+          return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019");
         }
       },
       pointToLayer: function(feature, latlng) {
