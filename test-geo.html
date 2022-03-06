@@ -23,11 +23,10 @@ permalink: /test-geo/
   
   <!-- Bootstrap for button -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 
   <!-- Position the map and title with Cascading Style Sheet (CSS) -->
-  <style type="text/css">
+  <style>
   #map { position: absolute; width:600px; height:800px; }
   #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }  
   button { position: relative; margin-top: 10px; margin-left: 200px; background: white; border: 2px solid rgba(0,0,0,0.2); font-family: Helvetica; font-size: 18px; }
@@ -48,7 +47,7 @@ permalink: /test-geo/
  
   
   <!-- Create the interactive map content with JavaScript (.js) -->
-  <script type="text/javascript">
+  <script>
   
   /* Set up the initial map center and zoom level */    
   var map = L.map('map').setView([24.00, 77.00], 5);
