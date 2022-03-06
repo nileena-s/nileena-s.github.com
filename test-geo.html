@@ -104,10 +104,14 @@ permalink: /test-geo/
     };
     
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
-    var groupC = L.geoJson(data, redFilter,
+    var groupC = L.geoJson(data, {
+      filter: function(feature, layer)  {
+        return feature.properties.group == "NOT Class C";
+      },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, redLayerStyle);
-      }).addTo(map);
+      }
+    }).addTo(map);
   });
    
   </script>
