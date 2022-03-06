@@ -107,8 +107,7 @@ permalink: /test-geo/
     var groupC = L.geoJson(data, redFilter,
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, redLayerStyle);
-      }
-    }).addTo(map);
+      }).addTo(map);
   });
    
   </script>
