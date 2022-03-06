@@ -78,31 +78,6 @@ permalink: /test-geo/
       radius: 6
     };
     
-    var blueFilter = {
-      filter: function(feature, layer) {
-        return feature.properties.group == "Group C";
-      }
-    };
-    
-    var redFilter = {
-      filter: function(feature, layer) {
-        return feature.properties.group == "NOT Group C";
-      }
-    };
-
-    // create an options object that specifies which function will called on each feature
-    var redLayerOptions = {
-      pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, redLayerStyle);
-      }
-    };
-    
-    var blueLayerOptions = {
-      pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, blueLayerStyle);
-      }
-    };
-    
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
     var groupC = L.geoJson(data, {
       filter: function(feature, layer)  {
@@ -112,6 +87,16 @@ permalink: /test-geo/
         return L.circleMarker(latlng, redLayerStyle);
       }
     }).addTo(map);
+    
+    var groupC = L.geoJson(data, {
+      filter: function(feature, layer)  {
+        return feature.properties.group == "Class C";
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, blueLayerStyle);
+      }
+    }).addTo(map);    
+    
   });
    
   </script>
