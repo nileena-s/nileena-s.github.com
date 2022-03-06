@@ -61,15 +61,10 @@ permalink: /test-geo/
   // loading GeoJSON file - Here my html and river-classC-test1-5mar.geojson file resides in same folder
   $.getJSON("river-classC-test1-5mar.geojson",function(data){
   // add GeoJSON layer to the map once the file is loaded
-  var datalayer = L.geoJson(data, {
-    pointToLayer: function(feature, latlng) {
-      return L.circleMarker(latlng, {
-      stroke: false,
-      color: row.Colour,
-      fillColor: row.ColourFill,
-      fillOpacity: 0.5,
-      radius: 15000
-      })
+  var datalayer = L.geoJson(data ,{
+    onEachFeature: function(feature, featureLayer) {
+      featureLayer.bindPopup(feature.properties.Title);
+    }
     }).addTo(map);
     map.fitBounds(datalayer.getBounds());
   });
