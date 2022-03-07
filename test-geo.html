@@ -89,14 +89,9 @@
     };
     
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
-    var NOTgroupC = L.geoJson(data, {
+    var NOTgroupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
-        if (year_check == "2013")  {
-          return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
-        }
-        else  {
-          return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019");
-        }
+        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019");
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, redLayerStyle);
@@ -106,48 +101,85 @@
       }
     }).addTo(map);
     
-    var groupC = L.geoJson(data, {
+    var groupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
-        if (year_check == "2013")  {
-          return (feature.properties.group == "Class C" && feature.properties.Year == "2013");
-        }
-        else  {
-          return (feature.properties.group == "Class C" && feature.properties.Year == "2019");
-        }
+        return (feature.properties.group == "Class C" && feature.properties.Year == "2019");
       },
       pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, blueLayerStyle);
+        return L.circleMarker(latlng, redLayerStyle);
       },
       onEachFeature: function (feature, layer) {
-        layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>');
+        layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>');
+      }
+    }).addTo(map);
+    
+    var NOTgroupC_2013 = L.geoJson(data, {
+      filter: function(feature, layer)  {
+        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, redLayerStyle);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>');
+      }
+    }).addTo(map);
+    
+    var groupC_2013 = L.geoJson(data, {
+      filter: function(feature, layer)  {
+        return (feature.properties.group == "Class C" && feature.properties.Year == "2013");
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, redLayerStyle);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>');
       }
     }).addTo(map);
     
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
     $("#all").click(function() {
-        map.addLayer(groupC)
-        map.addLayer(NOTgroupC)
+      if (year_check == "2013") {
+        map.addLayer(groupC_2013)
+        map.addLayer(NOTgroupC_2013)
+      }
+      else  {
+        map.addLayer(groupC_2019)
+        map.addLayer(NOTgroupC_2019)
+      }
     });
     $("#classC").click(function() {
-        map.addLayer(groupC)
-        map.removeLayer(NOTgroupC)
+      if (year_check == "2013") {
+        map.addLayer(groupC_2013)
+        map.removeLayer(NOTgroupC_2013)
+      }
+      else  {
+        map.addLayer(groupC_2019)
+        map.removeLayer(NOTgroupC_2019)
+      }
     });
     $("#nclassC").click(function() {
-        map.addLayer(NOTgroupC)
-        map.removeLayer(groupC)
+      if (year_check == "2013") {
+        map.removeLayer(groupC_2013)
+        map.addLayer(NOTgroupC_2013)
+      }
+      else  {
+        map.removeLayer(groupC_2019)
+        map.addLayer(NOTgroupC_2019)
+      }
     });
     $("#optradio1").click(function() {
-        map.addLayer(NOTgroupC)
-        map.addLayer(groupC)
+        map.addLayer(NOTgroupC_2019)
+        map.addLayer(groupC_2019)
     });
     $("#optradio2").click(function() {
-        map.addLayer(NOTgroupC)
-        map.addLayer(groupC)
+        map.addLayer(NOTgroupC_2019)
+        map.addLayer(groupC_2019)
     });
     $("#optradio3").click(function() {
-        map.addLayer(NOTgroupC)
-        map.addLayer(groupC)
+        map.addLayer(NOTgroupC_2013)
+        map.addLayer(groupC_2013)
     });
     
   });
