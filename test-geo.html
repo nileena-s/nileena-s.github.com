@@ -99,7 +99,7 @@
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, redLayerStyle);
-      }.
+      },
       onEachFeature: function (feature, layer) {
         layer.bindPopup('<h1><u><font color="red">'+feature.properties.Title+'</h1> </u></font><h2>Address: '+feature.properties.River+'</h2><p>'+feature.properties.Year+'</p>');
       }
