@@ -25,7 +25,6 @@
   <style>
   #map { position: absolute; width:600px; height:800px; }
   #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }  
-  button {  position: relative; margin-top: 10px; margin-left: 500px; }
   radio { position: relative; margin-top: 10px; }
   </style>
   
@@ -34,9 +33,9 @@
   
     <!-- Button -->
   <div class="btn-group">
-  <button type="button" id="all" class="btn btn-primary">All Water Stations</button>
+  <!--<button type="button" id="all" class="btn btn-primary">All Water Stations</button>
   <button type="button" id="classC" class="btn btn-primary">Class C</button>
-  <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>
+  <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>-->
   
   <label class="radio-inline"><input type="radio" name="optradio" id="optradio1" value="2019" checked>2019</label>
   <label class="radio-inline"><input type="radio" name="optradio" id="optradio2" value="2016">2016</label>
@@ -139,36 +138,7 @@
     
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
-    $("#all").click(function() {
-      if (year_check == "2013") {
-        map.addLayer(groupC_2013)
-        map.addLayer(NOTgroupC_2013)
-      }
-      else  {
-        map.addLayer(groupC_2019)
-        map.addLayer(NOTgroupC_2019)
-      }
-    });
-    $("#classC").click(function() {
-      if (year_check == "2013") {
-        map.addLayer(groupC_2013)
-        map.removeLayer(NOTgroupC_2013)
-      }
-      else  {
-        map.addLayer(groupC_2019)
-        map.removeLayer(NOTgroupC_2019)
-      }
-    });
-    $("#nclassC").click(function() {
-      if (year_check == "2013") {
-        map.removeLayer(groupC_2013)
-        map.addLayer(NOTgroupC_2013)
-      }
-      else  {
-        map.removeLayer(groupC_2019)
-        map.addLayer(NOTgroupC_2019)
-      }
-    });
+    
     $("#optradio1").click(function() {
         map.addLayer(NOTgroupC_2019)
         map.addLayer(groupC_2019)
