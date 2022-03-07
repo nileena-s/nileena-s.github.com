@@ -142,14 +142,20 @@
     $("#optradio1").click(function() {
         map.addLayer(NOTgroupC_2019)
         map.addLayer(groupC_2019)
+        map.removeLayer(NOTgroupC_2013)
+        map.removeLayer(groupC_2013)
     });
     $("#optradio2").click(function() {
         map.addLayer(NOTgroupC_2019)
         map.addLayer(groupC_2019)
+        map.removeLayer(NOTgroupC_2013)
+        map.removeLayer(groupC_2013)
     });
     $("#optradio3").click(function() {
         map.addLayer(NOTgroupC_2013)
         map.addLayer(groupC_2013)
+        map.removeLayer(NOTgroupC_2019)
+        map.removeLayer(groupC_2019)
     });
     
   });
