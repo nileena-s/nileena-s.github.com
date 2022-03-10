@@ -139,7 +139,15 @@
     
     var allgroup_trial = L.geoJson(data, {
       filter: function(feature, layer)  {
-        var year_check = document.querySelector('input[name="optradio"]:checked').value;
+        var years = document.getElementsByName('optradio');
+        for (var i = 0, length = years.length; i < length; i++) {
+          if (years[i].checked) {
+            // do whatever you want with the checked radio
+            var year_check = years[i].value;
+            // only one radio can be logically checked, don't check the rest
+            break;
+          }
+        }
         return (feature.properties.group == "Class C" && feature.properties.Year == year_check);
       },
       pointToLayer: function(feature, latlng) {
@@ -153,7 +161,15 @@
 
     var allgroup_trial2 = L.geoJson(data, {
       filter: function(feature, layer)  {
-        var year_check = document.querySelector('input[name="optradio"]:checked').value;
+        var years = document.getElementsByName('optradio');
+        for (var i = 0, length = years.length; i < length; i++) {
+          if (years[i].checked) {
+            // do whatever you want with the checked radio
+            var year_check = years[i].value;
+            // only one radio can be logically checked, don't check the rest
+            break;
+          }
+        }
         return (feature.properties.group == "Class C" && feature.properties.Year == year_check);
       },
       pointToLayer: function(feature, latlng) {
