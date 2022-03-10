@@ -136,6 +136,18 @@
       }
     });
     
+    var allgroup_trial = L.geoJson(data, {
+      filter: function(feature, layer)  {
+        return (feature.properties.group == "Class C" && feature.properties.Year == $('#optradio input:radio:checked').val());
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, blueLayerStyle);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+year_check);
+      }
+    });
+    
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
     
@@ -146,16 +158,18 @@
         map.removeLayer(groupC_2013)
     });
     $("#optradio2").click(function() {
-        map.addLayer(NOTgroupC_2019)
-        map.addLayer(groupC_2019)
-        map.removeLayer(NOTgroupC_2013)
-        map.removeLayer(groupC_2013)
-    });
-    $("#optradio3").click(function() {
         map.addLayer(NOTgroupC_2013)
         map.addLayer(groupC_2013)
         map.removeLayer(NOTgroupC_2019)
         map.removeLayer(groupC_2019)
+    });
+    $("#optradio3").click(function() {
+        data.clearLayers()
+        map.removeLayer(NOTgroupC_2013)
+        map.removeLayer(groupC_2013)
+        map.removeLayer(NOTgroupC_2019)
+        map.removeLayer(groupC_2019)
+        map.addLayer(allgroup_trial)
     });
     
   });
