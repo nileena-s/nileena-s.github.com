@@ -142,6 +142,7 @@
     
     var allgroup_trial = L.geoJson(data, {
       filter: function(feature, layer)  {
+        var year_check = $('#optradio input:radio:checked').val();
         return (feature.properties.group == "Class C" && feature.properties.Year == year_check);
       },
       pointToLayer: function(feature, latlng) {
