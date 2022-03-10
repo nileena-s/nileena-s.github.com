@@ -37,9 +37,9 @@
   <button type="button" id="classC" class="btn btn-primary">Class C</button>
   <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>-->
   
-  <label class="radio-inline"><input type="radio" name="optradio" id="optradio1" value="2019" checked>2019</label>
-  <label class="radio-inline"><input type="radio" name="optradio" id="optradio2" value="2013">2013</label>
-  <label class="radio-inline"><input type="radio" name="optradio" id="optradio3" value="2019">2019</label>
+  <label class="radio-inline"><input type="radio" name="optradio1" id="optradio" value="2019" checked>2019</label>
+  <label class="radio-inline"><input type="radio" name="optradio2" id="optradio" value="2013">2013</label>
+  <label class="radio-inline"><input type="radio" name="optradio3" id="optradio" value="2019">2019</label>
 
   </div>
 
@@ -101,7 +101,7 @@
       onEachFeature: function (feature, layer) {
         layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+year_check);
       }
-    });
+    }).addTo(map);
     
     var groupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
@@ -113,7 +113,7 @@
       onEachFeature: function (feature, layer) {
         layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+year_check);
       }
-    });
+    }).addTo(map);
     
     var NOTgroupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
@@ -154,19 +154,8 @@
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
 
     
-    $("#optradio1").click(function() {
-        map.addLayer(NOTgroupC_2019)
-        map.addLayer(groupC_2019)
-        map.removeLayer(NOTgroupC_2013)
-        map.removeLayer(groupC_2013)
-    });
-    $("#optradio2").click(function() {
-        map.addLayer(NOTgroupC_2013)
-        map.addLayer(groupC_2013)
-        map.removeLayer(NOTgroupC_2019)
-        map.removeLayer(groupC_2019)
-    });
-    $("#optradio3").click(function() {
+
+    $("#optradio").click(function() {
         map.removeLayer(NOTgroupC_2013)
         map.removeLayer(groupC_2013)
         map.removeLayer(NOTgroupC_2019)
