@@ -87,6 +87,9 @@
       radius: 4
     };
     
+    var year_check = $('#optradio input:radio:checked').val()
+
+    
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
     var NOTgroupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
@@ -138,7 +141,7 @@
     
     var allgroup_trial = L.geoJson(data, {
       filter: function(feature, layer)  {
-        return (feature.properties.group == "Class C" && feature.properties.Year == $('#optradio input:radio:checked').val());
+        return (feature.properties.group == "Class C" && feature.properties.Year == year_check);
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, blueLayerStyle);
@@ -168,6 +171,7 @@
         map.removeLayer(groupC_2013)
         map.removeLayer(NOTgroupC_2019)
         map.removeLayer(groupC_2019)
+        var year_check = $('#optradio input:radio:checked').val()
         map.addLayer(allgroup_trial)
     });
     
