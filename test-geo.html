@@ -182,41 +182,31 @@
     });
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
-    $("#optradio1").click(function() {
-        map.addLayer(NOTgroupC_2019)
-        map.addLayer(groupC_2019)
-        map.removeLayer(NOTgroupC_2013)
-        map.removeLayer(groupC_2013)
-        map.removeLayer(allgroup_trial)
-        map.removeLayer(allgroup_trial2)
-    });
     
-    $("#optradio2").click(function() {
-        map.addLayer(NOTgroupC_2013)
-        map.addLayer(groupC_2013)
-        map.removeLayer(NOTgroupC_2019)
-        map.removeLayer(groupC_2019)
-        map.removeLayer(allgroup_trial)
-        map.removeLayer(allgroup_trial2)
+    $(document).ready(function(){
+        $("input[type='radio']").click(function(){
+            map.removeLayer(NOTgroupC_2013)
+            map.removeLayer(groupC_2013)
+            map.removeLayer(NOTgroupC_2019)
+            map.removeLayer(groupC_2019)
+            map.removeLayer(allgroup_trial2)
+            var radioValue = $("input[name='optradio']:checked").val();
+            if(radioValue)  {
+              var allgroup_trial2 = L.geoJson(data, {
+                filter: function(feature, layer)  {
+                  return (feature.properties.group == "Class C" && feature.properties.Year == radioValue);
+                },
+                pointToLayer: function(feature, latlng) {
+                  return L.circleMarker(latlng, blueLayerStyle);
+                },
+                onEachFeature: function (feature, layer) {
+                  layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+radioValue+'</p></h4></font>   '+year_check);
+                }
+              }).addTo(map);
+            }
+        });
     });
 
-    $("#optradio3").click(function() {
-        map.removeLayer(NOTgroupC_2013)
-        map.removeLayer(groupC_2013)
-        map.removeLayer(NOTgroupC_2019)
-        map.removeLayer(groupC_2019)
-        map.removeLayer(allgroup_trial2)
-        map.addLayer(allgroup_trial)
-    });
-    
-    $("#optradio4").click(function() {
-        map.removeLayer(NOTgroupC_2013)
-        map.removeLayer(groupC_2013)
-        map.removeLayer(NOTgroupC_2019)
-        map.removeLayer(groupC_2019)
-        map.removeLayer(allgroup_trial)
-        map.addLayer(allgroup_trial2)
-    });
     
   });
    
