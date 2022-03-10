@@ -145,7 +145,7 @@
         var years = $("input[name='optradio']");
         for (const year of years) {
           if (year.checked)  {
-            var year_check = year.checked;
+            var year_check = year.val();
             return (feature.properties.group == "Class C" && feature.properties.Year == year_check);
             break;
           }
@@ -165,7 +165,7 @@
         var years = $("input[name='optradio']");
         for (const year of years) {
           if (year.checked)  {
-            var year_check = year.checked;
+            var year_check = year.val();
             return (feature.properties.group == "Class C" && feature.properties.Year == year_check);
             break;
           }
