@@ -204,6 +204,10 @@
     });
 
     $("#optradio3").click(function() {
+        map.removeLayer(NOTgroupC_2013)
+        map.removeLayer(groupC_2013)
+        map.removeLayer(NOTgroupC_2019)
+        map.removeLayer(groupC_2019)
         map.removeLayer(allgroup_trial)
         map.removeLayer(allgroup_trial2)
         map.addLayer(all_test[0])
@@ -213,6 +217,10 @@
     });
     
     $("#optradio4").click(function() {
+        map.removeLayer(NOTgroupC_2013)
+        map.removeLayer(groupC_2013)
+        map.removeLayer(NOTgroupC_2019)
+        map.removeLayer(groupC_2019)
         map.removeLayer(allgroup_trial)
         map.removeLayer(allgroup_trial2)
         map.addLayer(this[all_test[2]])
