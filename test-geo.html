@@ -238,7 +238,7 @@
     });
     
     $("#optradio4").click(function(e) {
-        const layerName = e.target.name;
+        const layerName = e.target.id;
         map.removeLayer(NOTgroupC_2013);
         map.removeLayer(groupC_2013);
         map.removeLayer(NOTgroupC_2019);
@@ -251,7 +251,7 @@
     
     // register click event
     $('button').on('click', function(e) {
-      const layerName = e.target.id;
+      const layerName = e.target.value;
 
       // if a layer is already active, remove it from the map and the active array
       if (layers.active.includes(layerName)) {
