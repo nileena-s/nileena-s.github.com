@@ -66,6 +66,7 @@
     accessToken: 'pk.eyJ1IjoiaW5kaWFzcGVuZCIsImEiOiJjbDA0ODZ2dTkwODYxM2ludGJiZTVqYjl2In0.2Hr6ByYsG-UumMoJiaCAFQ'
   }).addTo(map);
   
+  $(document).ready(function() {
   // loading GeoJSON file - Here my html and river-classC-test1-5mar.geojson file resides in same folder
   $.getJSON("river-classC-2019-13-6Mar.geojson",function(data){
     // create an object with a list of options to style the circle marker
@@ -230,7 +231,7 @@
         alert("testing")
     });
 
-    
+  });
   });
    
   </script>
