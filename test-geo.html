@@ -69,6 +69,15 @@
   $.getJSON("river-classC-2019-13-6Mar.geojson",function(data){
   const data_json = data;
   });
+    
+  // Create an object to keep track of active layers and each layer with its markers
+  const layers = {
+    active: [],
+    layer1: new L.LayerGroup(),
+    layer2: new L.LayerGroup(),
+    layer3: new L.LayerGroup(),
+    layer4: new L.LayerGroup()
+  };
   
   $(document).ready(function() {
   // loading GeoJSON file - Here my html and river-classC-test1-5mar.geojson file resides in same folder
