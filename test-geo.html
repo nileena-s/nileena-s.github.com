@@ -80,10 +80,10 @@
   // Create an object to keep track of active layers and each layer with its markers
   const layers = {
     active: [],
-    layer1: new L.LayerGroup(),
-    layer2: new L.LayerGroup(),
-    layer3: new L.LayerGroup(),
-    layer4: new L.LayerGroup()
+    optradio1: new L.LayerGroup(),
+    optradio2: new L.LayerGroup(),
+    optradio3: new L.LayerGroup(),
+    optradio4: new L.LayerGroup()
   };
   
   $(document).ready(function() {
@@ -202,7 +202,7 @@
       }
     });
     
-    layers.layer1 = NOTgroupC_2019;
+    layers.optradio1 = NOTgroupC_2019;
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
     
@@ -237,9 +237,21 @@
         map.removeLayer(all_test[3])
     });
     
+    $("#optradio4").click(function(e) {
+        const layerName = e.target.name;
+        map.removeLayer(NOTgroupC_2013);
+        map.removeLayer(groupC_2013);
+        map.removeLayer(NOTgroupC_2019);
+        map.removeLayer(groupC_2019);
+        map.removeLayer(allgroup_trial);
+        map.removeLayer(allgroup_trial2);
+        layers.active.push(layerName);
+        layers[layerName].addTo(map);
+    });
+    
     // register click event
     $('button').on('click', function(e) {
-      const layerName = e.target.name;
+      const layerName = e.target.id;
 
       // if a layer is already active, remove it from the map and the active array
       if (layers.active.includes(layerName)) {
