@@ -66,21 +66,13 @@
     zoomOffset: -1,
     accessToken: 'pk.eyJ1IjoiaW5kaWFzcGVuZCIsImEiOiJjbDA0ODZ2dTkwODYxM2ludGJiZTVqYjl2In0.2Hr6ByYsG-UumMoJiaCAFQ'
   }).addTo(map);
-  
-  $.getJSON("river-classC-2019-13-6Mar.geojson",function(data){
-  const data_json = data;
-  });
     
   // Create an object to keep track of active layers and each layer with its markers
   const layers = {
     active: [],
-    optradio1: new L.LayerGroup(),
-    optradio2: new L.LayerGroup(),
-    optradio3: new L.LayerGroup(),
     2019_C: new L.LayerGroup(),
     2019_NC: new L.LayerGroup(),
-    2013_C: new L.LayerGroup(),
-    2013_NC: new L.LayerGroup()
+    2013: new L.LayerGroup()
   };
   
   $(document).ready(function() {
@@ -103,9 +95,7 @@
       fillOpacity: 0.5,
       radius: 4
     };
-    
-    var year_check = $("input[name='optradio']:checked").val();
-    
+        
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
     var NOTgroupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
@@ -155,54 +145,9 @@
       }
     });
     
-    var allgroup_trial = L.geoJson(data, {
-      filter: function(feature, layer)  {
-        var years = document.getElementsByName('optradio');
-        for (var i = 0, length = years.length; i < length; i++) {
-          if (years[i].checked) {
-            // do whatever you want with the checked radio
-            var year_check = years[i].value;
-            // only one radio can be logically checked, don't check the rest
-            break;
-          }
-        }
-        return (feature.properties.group == "Class C" && feature.properties.Year == year_check);
-      },
-      pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, blueLayerStyle);
-      },
-      onEachFeature: function (feature, layer) {
-        var year_check = $("input[name='optradio']:checked").val();
-        layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+year_check+'</p></h4></font>   '+year_check);
-      }
-    });
-
-    var allgroup_trial2 = L.geoJson(data, {
-      filter: function(feature, layer)  {
-        var years = document.getElementsByName('optradio');
-        for (var i = 0, length = years.length; i < length; i++) {
-          if (years[i].checked) {
-            // do whatever you want with the checked radio
-            var year_check = years[i].value;
-            // only one radio can be logically checked, don't check the rest
-            break;
-          }
-        }
-        return (feature.properties.group == "Class C" && feature.properties.Year == year_check);
-      },
-      pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, blueLayerStyle);
-      },
-      onEachFeature: function (feature, layer) {
-        var year_check = $("input[name='optradio']:checked").val();
-        layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+year_check+'</p></h4></font>   '+year_check);
-      }
-    });
-    
     layers.2019_C = groupC_2019;
     layers.2019_NC = NOTgroupC_2019;
-    layers.2013_C = groupC_2013;
-    layers.2013_NC = NOTgroupC_2013;
+    layers.2013 = groupC_2013;
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
     
@@ -211,8 +156,6 @@
         map.addLayer(groupC_2019)
         map.removeLayer(NOTgroupC_2013)
         map.removeLayer(groupC_2013)
-        map.removeLayer(allgroup_trial)
-        map.removeLayer(allgroup_trial2)
     });
     
     $("#optradio2").click(function() {
@@ -220,8 +163,6 @@
         map.addLayer(groupC_2013)
         map.removeLayer(NOTgroupC_2019)
         map.removeLayer(groupC_2019)
-        map.removeLayer(allgroup_trial)
-        map.removeLayer(allgroup_trial2)
     });
 
     $("#optradio3").click(function() {
@@ -229,26 +170,16 @@
         map.removeLayer(groupC_2013)
         map.removeLayer(NOTgroupC_2019)
         map.removeLayer(groupC_2019)
-        map.removeLayer(allgroup_trial)
-        map.removeLayer(allgroup_trial2)
-        map.addLayer(all_test[0])
-        map.addLayer(all_test[1])
-        map.removeLayer(all_test[2])
-        map.removeLayer(all_test[3])
     });
     
     $("#optradio4").click(function(e) {
-        const layerName1 = e.target.value + "_C";
-        const layerName2 = e.target.value + "_NC";
+        const layerName = e.target.value;
         map.removeLayer(NOTgroupC_2013);
         map.removeLayer(groupC_2013);
         map.removeLayer(NOTgroupC_2019);
         map.removeLayer(groupC_2019);
-        map.removeLayer(allgroup_trial);
-        map.removeLayer(allgroup_trial2);
-        layers.active.push(layerName1);
-        layers[layerName1].addTo(map);
-        layers[layerName2].addTo(map);
+        layers.active.push(layerName);
+        layers[layerName].addTo(map);
     });
 
   });
