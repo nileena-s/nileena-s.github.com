@@ -52,18 +52,6 @@
   <!-- Create the interactive map content with JavaScript (.js) -->
   <script>
   
-  
-  var data_json;
-  
-  // Create an object to keep track of active layers and each layer with its markers
-  const layers = {
-    active: [],
-    NOTgroupC_2019: new L.LayerGroup(),
-    groupC_2019: new L.LayerGroup(),
-    NOTgroupC_2013: new L.LayerGroup(),
-    groupC_2013: new L.LayerGroup()
-  };  
-  
   /* Set up the initial map center and zoom level */    
   var map = L.map('map').setView([24.00, 77.00], 5);
             
@@ -79,7 +67,7 @@
   }).addTo(map);
   
   // loading GeoJSON file - Here my html and river-classC-test1-5mar.geojson file resides in same folder
-  $.getJSON("river-classC-2019-13-6Mar.geojson", function(data){
+  $.getJSON("river-classC-2019-13-6Mar.geojson",function(data){
     // create an object with a list of options to style the circle marker
     // see http://leafletjs.com/reference-1.3.0.html#path for additional options
     var redLayerStyle = {
@@ -89,7 +77,7 @@
       fillOpacity: 0.5,
       radius: 4
     };
-
+    
     var blueLayerStyle = {
       stroke: false,
       color: "blue",
@@ -97,7 +85,9 @@
       fillOpacity: 0.5,
       radius: 4
     };
-
+    
+    var year_check = $("input[name='optradio']:checked").val();
+    
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
     var NOTgroupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
@@ -110,7 +100,7 @@
         layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+year_check);
       }
     }).addTo(map);
-
+    
     var groupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "Class C" && feature.properties.Year == "2019");
@@ -122,7 +112,7 @@
         layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+year_check);
       }
     }).addTo(map);
-
+    
     var NOTgroupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
@@ -134,7 +124,7 @@
         layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+year_check);
       }
     });
-
+    
     var groupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "Class C" && feature.properties.Year == "2013");
@@ -146,7 +136,7 @@
         layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+year_check);
       }
     });
-
+    
     var allgroup_trial = L.geoJson(data, {
       filter: function(feature, layer)  {
         var years = document.getElementsByName('optradio');
@@ -190,10 +180,11 @@
         layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+year_check+'</p></h4></font>   '+year_check);
       }
     });
-
-
+    
+    const all_test = {NOTgroupC_2019, groupC_2019, NOTgroupC_2013, groupC_2013};
+    
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
-
+    
     $("#optradio1").click(function() {
         map.addLayer(NOTgroupC_2019)
         map.addLayer(groupC_2019)
@@ -202,7 +193,7 @@
         map.removeLayer(allgroup_trial)
         map.removeLayer(allgroup_trial2)
     });
-
+    
     $("#optradio2").click(function() {
         map.addLayer(NOTgroupC_2013)
         map.addLayer(groupC_2013)
@@ -224,7 +215,7 @@
         map.removeLayer(all_test[2])
         map.removeLayer(all_test[3])
     });
-
+    
     $("#optradio4").click(function() {
         map.removeLayer(NOTgroupC_2013)
         map.removeLayer(groupC_2013)
@@ -238,10 +229,11 @@
         map.removeLayer(this[all_test[1]])
         alert("testing")
     });
+
+    
   });
    
-</script>
+  </script>
 </body>
 </html>
-
 
