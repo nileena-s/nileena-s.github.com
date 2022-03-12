@@ -44,6 +44,12 @@
 
   </div>
   
+  <div class="button-group">
+    <button name="layer1">2019</button>
+    <button name="layer2">tbd</button>
+    <button name="layer3">tbd</button>
+    <button name="layer4">tbd</button>
+  </div>
 
   <!-- Display the map and title with HTML division tags  -->
   <div id="map-title">River Tracker</div>
@@ -77,10 +83,7 @@
     optradio1: new L.LayerGroup(),
     optradio2: new L.LayerGroup(),
     optradio3: new L.LayerGroup(),
-    2019_C: new L.LayerGroup(),
-    2019_NC: new L.LayerGroup(),
-    2013_C: new L.LayerGroup(),
-    2013_NC: new L.LayerGroup()
+    optradio4: new L.LayerGroup()
   };
   
   $(document).ready(function() {
@@ -199,10 +202,7 @@
       }
     });
     
-    layers.2019_C = groupC_2019;
-    layers.2019_NC = NOTgroupC_2019;
-    layers.2013_C = groupC_2013;
-    layers.2013_NC = NOTgroupC_2013;
+    layers.optradio4 = NOTgroupC_2019;
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
     
@@ -238,17 +238,30 @@
     });
     
     $("#optradio4").click(function(e) {
-        const layerName1 = e.target.value + "_C";
-        const layerName2 = e.target.value + "_NC";
+        const layerName = e.target.id;
         map.removeLayer(NOTgroupC_2013);
         map.removeLayer(groupC_2013);
         map.removeLayer(NOTgroupC_2019);
         map.removeLayer(groupC_2019);
         map.removeLayer(allgroup_trial);
         map.removeLayer(allgroup_trial2);
-        layers.active.push(layerName1);
-        layers[layerName1].addTo(map);
-        layers[layerName2].addTo(map);
+        layers.active.push(layerName);
+        layers[layerName].addTo(map);
+    });
+    
+    // register click event
+    $('button').on('click', function(e) {
+      const layerName = e.target.value;
+
+      // if a layer is already active, remove it from the map and the active array
+      if (layers.active.includes(layerName)) {
+        layers.active = layers.active.filter(layer => layer !== layerName);
+        map.removeLayer(layers[layerName]);
+      } else {
+        // add the layer to the map and to the active array
+        layers.active.push(layerName);
+        layers[layerName].addTo(map);
+      }
     });
 
   });
