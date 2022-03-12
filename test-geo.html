@@ -76,7 +76,8 @@
     optradio1: new L.LayerGroup(),
     optradio2: new L.LayerGroup(),
     optradio3: new L.LayerGroup(),
-    optradio4: new L.LayerGroup()
+    optradio4_NC: new L.LayerGroup(),
+    optradio4_C: new L.LayerGroup()
   };
   
   $(document).ready(function() {
@@ -150,7 +151,8 @@
       }
     });
     
-    layers.optradio4 = NOTgroupC_2019;
+    layers.optradio4_NC = NOTgroupC_2013;
+    layers.optradio4_C = groupC_2013;
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
     
@@ -176,13 +178,15 @@
     });
     
     $("#optradio4").click(function(e) {
-        const layerName = e.target.value;
+        var val = e.target.value;
+        var layerName1 = val+'_NC';
+        var layerName2 = val+'_C';
         map.removeLayer(NOTgroupC_2013);
         map.removeLayer(groupC_2013);
         map.removeLayer(NOTgroupC_2019);
         map.removeLayer(groupC_2019);
-        layers.active.push(layerName);
-        layers[layerName].addTo(map);
+        layers.active.push(layerName1);
+        layers[layerName1].addTo(map);
     });
 
   });
