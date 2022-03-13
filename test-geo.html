@@ -46,13 +46,21 @@
   </div>
   
   <select id="riv_dropdown" name="riv_dropdown" class="dropdown">
-      <option value="All">All Rivers</option>
-      <option value="Ganga">Ganga</option>
-      <option value="Cauvery">Cauvery</option>
-      <option value="Beas">Beas</option>
-      <option value="Godavari">Godavari</option>
-      <option value="Sutlej">Sutlej</option>
-      <option value="Yamuna">Yamuna</option>
+      <option value="0">All Rivers</option>
+      <option value="1">Ganga</option>
+      <option value="2">Cauvery</option>
+      <option value="3">Beas</option>
+      <option value="4">Godavari</option>
+      <option value="5">Sutlej</option>
+      <option value="6">Yamuna</option>
+      <option value="7">Mahanadi</option>
+      <option value="8">Krishna</option>
+      <option value="9">Brahmani</option>
+      <option value="10">Gomti</option>
+      <option value="11">Tapi</option>
+      <option value="12">Sone</option>
+      <option value="13">Tungabhadra</option>
+      <option value="14">Subarnarekha</option>
   </select>
   
 
@@ -268,7 +276,7 @@
         }
 
         $('select[name="riv_dropdown"]').change(function(){
-        if ($(this).val() == "Ganga"){
+        if ($(this).val() == "1"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
             map.removeLayer(notgroupC_2019);
@@ -325,7 +333,7 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-        if ($(this).val() == "Ganga"){
+        if ($(this).val() == "1"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
             map.removeLayer(notgroupC_2019);
