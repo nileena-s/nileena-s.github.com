@@ -45,27 +45,27 @@
    "river_condition": " (feature.properties.river==\"BRAHMANI\" || feature.properties.river==\"RIVER BRAHMANI\" || feature.properties.river==\"BRAHMANI RIVER\")"
  },
  {
-   "no": 9,
+   "no": 10,
    "river_select": " Gomti",
    "river_condition": " (feature.properties.river==\"GOMTI\" || feature.properties.river==\"RIVER GOMTI\" || feature.properties.river==\"GOMTI RIVER\")"
  },
  {
-   "no": 9,
+   "no": 11,
    "river_select": " Tapi",
    "river_condition": " (feature.properties.river==\"TAPI\" || feature.properties.river==\"RIVER TAPI\" || feature.properties.river==\"TAPI RIVER\")"
  },
  {
-   "no": 9,
+   "no": 12,
    "river_select": " Sone",
    "river_condition": " (feature.properties.river==\"SONE\" || feature.properties.river==\"RIVER SONE\" || feature.properties.river==\"SONE RIVER\")"
  },
  {
-   "no": 9,
+   "no": 13,
    "river_select": " Tungabhadra",
    "river_condition": " (feature.properties.river==\"TUNGABHADRA\" || feature.properties.river==\"RIVER TUNGABHADRA\" || feature.properties.river==\"TUNGABHADRA RIVER\")"
  },
  {
-   "no": 9,
+   "no": 14,
    "river_select": " Subarnarekha",
    "river_condition": " (feature.properties.river==\"SUBARNAREKHA\" || feature.properties.river==\"RIVER SUBARNAREKHA\" || feature.properties.river==\"SUBARNAREKHA RIVER\")"
  }
