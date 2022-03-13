@@ -101,7 +101,7 @@
     
     
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
-    layers.NOTgroupC_2019 = L.geoJson(data, {
+    var NOTgroupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019");
       },
@@ -113,7 +113,7 @@
       }
     }).addTo(map);
     
-    layers.groupC_2019 = L.geoJson(data, {
+    var groupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "Class C" && feature.properties.Year == "2019");
       },
@@ -125,7 +125,7 @@
       }
     }).addTo(map);
     
-    layers.NOTgroupC_2013 = L.geoJson(data, {
+    var NOTgroupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
       },
@@ -137,7 +137,7 @@
       }
     });
     
-    layers.groupC_2013 = L.geoJson(data, {
+    var groupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "Class C" && feature.properties.Year == "2013");
       },
@@ -148,6 +148,11 @@
         layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
       }
     });
+    
+    layers.NOTgroupC_2019 = NOTgroupC_2019;
+    layers.groupC_2019 = groupC_2019;
+    layers.NOTgroupC_2013 = NOTgroupC_2013;
+    layers.groupC_2013 = groupC_2013;
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
     
