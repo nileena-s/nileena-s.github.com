@@ -99,6 +99,24 @@
     groupC_2013: new L.LayerGroup()
   };
   
+  const riv_layers = {
+    active: [],
+    river1: new L.LayerGroup(),
+    river2: new L.LayerGroup(),
+    river3: new L.LayerGroup(),
+    river4: new L.LayerGroup(),
+    river5: new L.LayerGroup(),
+    river6: new L.LayerGroup(),
+    river7: new L.LayerGroup(),
+    river8: new L.LayerGroup(),
+    river9: new L.LayerGroup(),
+    river10: new L.LayerGroup(),
+    river11: new L.LayerGroup(),
+    river12: new L.LayerGroup(),
+    river13: new L.LayerGroup(),
+    river14: new L.LayerGroup()
+  };    
+    
   $(document).ready(function() {
   // loading GeoJSON file - Here my html and river-classC-test1-5mar.geojson file resides in same folder
   $.getJSON("river-classC-2019-13-6Mar.geojson",function(data){
