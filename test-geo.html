@@ -46,13 +46,21 @@
   </div>
   
   <select id="riv_dropdown" name="riv_dropdown" class="dropdown">
-      <option value="All">All Rivers</option>
-      <option value="Ganga">Ganga</option>
-      <option value="Cauvery">Cauvery</option>
-      <option value="Beas">Beas</option>
-      <option value="Godavari">Godavari</option>
-      <option value="Sutlej">Sutlej</option>
-      <option value="Yamuna">Yamuna</option>
+      <option value="0">All Rivers</option>
+      <option value="1">Ganga</option>
+      <option value="2">Cauvery</option>
+      <option value="3">Beas</option>
+      <option value="4">Godavari</option>
+      <option value="5">Sutlej</option>
+      <option value="6">Yamuna</option>
+      <option value="7">Mahanadi</option>
+      <option value="8">Krishna</option>
+      <option value="9">Brahmani</option>
+      <option value="10">Gomti</option>
+      <option value="11">Tapi</option>
+      <option value="12">Sone</option>
+      <option value="13">Tungabhadra</option>
+      <option value="14">Subarnarekha</option>
   </select>
   
 
@@ -78,8 +86,8 @@
     accessToken: 'pk.eyJ1IjoiaW5kaWFzcGVuZCIsImEiOiJjbDA0ODZ2dTkwODYxM2ludGJiZTVqYjl2In0.2Hr6ByYsG-UumMoJiaCAFQ'
   }).addTo(map);
   
-  $.getJSON("river-classC-2019-13-6Mar.geojson",function(data){
-  const data_json = data;
+  $.getJSON("river_list_13Mar.json",function(list){
+  const river_list = list;
   });
     
   // Create an object to keep track of active layers and each layer with its markers
@@ -89,6 +97,24 @@
     groupC_2019: new L.LayerGroup(),
     notgroupC_2013: new L.LayerGroup(),
     groupC_2013: new L.LayerGroup()
+  };
+
+  const riv_layers = {
+    active: [],
+    river1: new L.LayerGroup(),
+    river2: new L.LayerGroup(),
+    river3: new L.LayerGroup(),
+    river4: new L.LayerGroup(),
+    river5: new L.LayerGroup(),
+    river6: new L.LayerGroup(),
+    river7: new L.LayerGroup(),
+    river8: new L.LayerGroup(),
+    river9: new L.LayerGroup(),
+    river10: new L.LayerGroup(),
+    river11: new L.LayerGroup(),
+    river12: new L.LayerGroup(),
+    river13: new L.LayerGroup(),
+    river14: new L.LayerGroup()
   };
   
   $(document).ready(function() {
@@ -162,33 +188,37 @@
       }
     });
     
-    var notgroupC_2019_2 = L.geoJson(data, {
-      filter: function(feature, layer)  {
-        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA"));
-      },
-      pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, redLayerStyle);
-      },
-      onEachFeature: function (feature, layer) {
-        layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
-      }
-    }).addTo(map);
-    
-    var groupC_2019_2 = L.geoJson(data, {
-      filter: function(feature, layer)  {
-        return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA"));
-      },
-      pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, blueLayerStyle);
-      },
-      onEachFeature: function (feature, layer) {
-        layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
-      }
-    }).addTo(map);
+    for (var j=1; j<=14; j++) {
+      var riv = river_list[j-1].river_select;
+      var riv_cond = river_list[j-1].river_condition;
+      var layer_name = 'river'+j
+      var notgroupC_2019_temp = L.geoJson(data, {
+        filter: function(feature, layer)  {
+          return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && (riv_cond));
+        },
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, redLayerStyle);
+        },
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+        }
+      }).addTo(map);
 
-    var notgroupC_2013_2 = L.geoJson(data, {
+      var groupC_2019_temp = L.geoJson(data, {
+        filter: function(feature, layer)  {
+          return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && (riv_cond));
+        },
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, blueLayerStyle);
+        },
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+        }
+      }).addTo(map);
+
+    var notgroupC_2013_temp = L.geoJson(data, {
       filter: function(feature, layer)  {
-        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA"));
+        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013" && (riv_cond));
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, redLayerStyle);
@@ -198,9 +228,9 @@
       }
     });
     
-    var groupC_2013_2 = L.geoJson(data, {
+    var groupC_2013_temp = L.geoJson(data, {
       filter: function(feature, layer)  {
-        return (feature.properties.group == "Class C" && feature.properties.Year == "2013" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA"));
+        return (feature.properties.group == "Class C" && feature.properties.Year == "2013" && (riv_cond));
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, blueLayerStyle);
@@ -209,7 +239,10 @@
         layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
       }
     });
-
+    
+    riv_layers[layer_name] = groupC_2013_temp;
+    
+    }
     
     layers.notgroupC_2019 = notgroupC_2019;
     layers.groupC_2019 = groupC_2019;
