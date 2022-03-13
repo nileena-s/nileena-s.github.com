@@ -257,7 +257,11 @@
             map.removeLayer(groupC_2019);
             map.addLayer(notgroupC_2019_2);
             map.addLayer(notgroupC_2019_2);
-         }        
+         }
+        else  {
+            layers[layerName1].addTo(map);
+            layers[layerName2].addTo(map);
+        }        
         });
     });
     
@@ -286,7 +290,11 @@
             map.removeLayer(groupC_2019);
             map.addLayer(notgroupC_2013_2);
             map.addLayer(notgroupC_2013_2);
-         }        
+         } 
+        else  {
+            layers[layerName1].addTo(map);
+            layers[layerName2].addTo(map);
+        }
         });
     });
 
