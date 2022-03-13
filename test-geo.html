@@ -101,7 +101,7 @@
     
     
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
-    var layers.NOTgroupC_2019 = L.geoJson(data, {
+    layers.NOTgroupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019");
       },
@@ -113,7 +113,7 @@
       }
     }).addTo(map);
     
-    var layers.groupC_2019 = L.geoJson(data, {
+    layers.groupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "Class C" && feature.properties.Year == "2019");
       },
@@ -125,7 +125,7 @@
       }
     }).addTo(map);
     
-    var layers.NOTgroupC_2013 = L.geoJson(data, {
+    layers.NOTgroupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
       },
@@ -137,7 +137,7 @@
       }
     });
     
-    var layers.groupC_2013 = L.geoJson(data, {
+    layers.groupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "Class C" && feature.properties.Year == "2013");
       },
