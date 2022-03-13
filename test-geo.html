@@ -228,10 +228,11 @@
       }
     });
 
-    for (var j=1; j<=14; j++) {
-      var riv = river_list[j-1].river_select;
-
-    }
+    $.getJSON("river_list_13Mar.json",function(riv_list){
+      $.each(riv_list, function (key, val) {
+        var layer_name_nc = 'river'+val.no+'_nc';
+      });
+    });
     
     layers.notgroupC_2019 = notgroupC_2019;
     layers.groupC_2019 = groupC_2019;
