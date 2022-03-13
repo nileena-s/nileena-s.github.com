@@ -102,7 +102,7 @@
     
     
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
-    var notgroupC_2019 = L.geoJson(data, {
+    layers.notgroupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019");
       },
@@ -114,7 +114,7 @@
       }
     }).addTo(map);
     
-    var groupC_2019 = L.geoJson(data, {
+    layers.groupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "Class C" && feature.properties.Year == "2019");
       },
@@ -126,7 +126,7 @@
       }
     }).addTo(map);
     
-    var notgroupC_2013 = L.geoJson(data, {
+    layers.notgroupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
       },
@@ -138,7 +138,7 @@
       }
     });
     
-    var groupC_2013 = L.geoJson(data, {
+    layers.groupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "Class C" && feature.properties.Year == "2013");
       },
@@ -150,10 +150,6 @@
       }
     });
     
-    layers.notgroupC_2019 = notgroupC_2019;
-    layers.groupC_2019 = groupC_2019;
-    layers.notgroupC_2013 = notgroupC_2013;
-    layers.groupC_2013 = groupC_2013;
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
     
