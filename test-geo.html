@@ -30,8 +30,6 @@
   .dropbtn {  background-color: #4CAF50;  color: white; padding: 16px;  font-size: 16px;  border: none; cursor: pointer;  }
   .dropdown { position: relative; display: inline-block;  }
   .dropdown-content { display: none;  position: absolute; background-color: #f9f9f9;  min-width: 160px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); z-index: 1800; }
-  .dropdown-content a { color: black; padding: 12px 16px; text-decoration: none;  display: block; }
-  .dropdown-content a:hover {background-color: #f1f1f1}
   .dropdown-content option { color: black; padding: 12px 16px; text-decoration: none;  display: block; }
   .dropdown-content option:hover {background-color: #f1f1f1}
   .dropdown:hover .dropdown-content { display: block; }
@@ -58,21 +56,15 @@
   <div class="dropdown">
   <button class="dropbtn">Select River</button>
     <div class="dropdown-content">
-    <option value="value1">value1</option>
-    <option value="value2" selected>value2</option>
-    <option value="value3">value3</option>
-    <a href="#">Ganga</a>
-    <a href="#">Cauvery</a>
-    <a href="#">Beas</a>
-    <a href="#">Godavari</a>
-    <a href="#">Sutlej</a>
-    <a href="#">Yamuna</a>
+      <option value="Ganga">Ganga</option>
+      <option value="Cauvery">Cauvery</option>
+      <option value="Beas">Beas</option>
+      <option value="Godavari">Godavari</option>
+      <option value="Sutlej">Sutlej</option>
+      <option value="Yamuna">Yamuna</option>
     </div>
   </div>
   
-    <select name="Type" id="sid">
-
-    </select>
 
   <!-- Display the map and title with HTML division tags  -->
   <div id="map-title">River Tracker</div>
