@@ -1,23 +1,23 @@
 [
  {
    "no": 1,
-   "river_select": " Ganga",
-   "river_condition": " (feature.properties.river==\"GANGA\" || feature.properties.river==\"RIVER GANGA\" || feature.properties.river==\"GANGA RIVER\")"
+   "river_select": "Ganga",
+   "river_condition": "(feature.properties.river==\"GANGA\" || feature.properties.river==\"RIVER GANGA\" || feature.properties.river==\"GANGA RIVER\")"
  },
  {
    "no": 2,
-   "river_select": " Cauvery",
-   "river_condition": " (feature.properties.river==\"CAUVERY\" || feature.properties.river==\"RIVER CAUVERY\" || feature.properties.river==\"CAUVERY RIVER\")"
+   "river_select": "Cauvery",
+   "river_condition": "(feature.properties.river==\"CAUVERY\" || feature.properties.river==\"RIVER CAUVERY\" || feature.properties.river==\"CAUVERY RIVER\")"
  },
  {
    "no": 3,
-   "river_select": " Beas",
-   "river_condition": " (feature.properties.river==\"BEAS\" || feature.properties.river==\"RIVER BEAS\" || feature.properties.river==\"BEAS RIVER\")"
+   "river_select": "Beas",
+   "river_condition": "(feature.properties.river==\"BEAS\" || feature.properties.river==\"RIVER BEAS\" || feature.properties.river==\"BEAS RIVER\")"
  },
  {
    "no": 4,
-   "river_select": " Godavari",
-   "river_condition": " (feature.properties.river==\"GODAVARI\" || feature.properties.river==\"RIVER GODAVARI\" || feature.properties.river==\"GODAVARI RIVER\")"
+   "river_select": "Godavari",
+   "river_condition": "(feature.properties.river==\"GODAVARI\" || feature.properties.river==\"RIVER GODAVARI\" || feature.properties.river==\"GODAVARI RIVER\")"
  },
  {
    "no": 5,
