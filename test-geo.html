@@ -72,9 +72,10 @@
     
   // Create an object to keep track of active layers and each layer with its markers
   const layers = {
-    NOTgroupC_2019: new L.LayerGroup(),
+    active: [],
+    notgroupC_2019: new L.LayerGroup(),
     groupC_2019: new L.LayerGroup(),
-    NOTgroupC_2013: new L.LayerGroup(),
+    notgroupC_2013: new L.LayerGroup(),
     groupC_2013: new L.LayerGroup()
   };
   
@@ -101,7 +102,7 @@
     
     
     // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
-    var NOTgroupC_2019 = L.geoJson(data, {
+    var notgroupC_2019 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019");
       },
@@ -125,7 +126,7 @@
       }
     }).addTo(map);
     
-    var NOTgroupC_2013 = L.geoJson(data, {
+    var notgroupC_2013 = L.geoJson(data, {
       filter: function(feature, layer)  {
         return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
       },
@@ -149,34 +150,34 @@
       }
     });
     
-    layers.NOTgroupC_2019 = NOTgroupC_2019;
+    layers.notgroupC_2019 = notgroupC_2019;
     layers.groupC_2019 = groupC_2019;
-    layers.NOTgroupC_2013 = NOTgroupC_2013;
+    layers.notgroupC_2013 = notgroupC_2013;
     layers.groupC_2013 = groupC_2013;
     
     // The JavaScript below is for buttons to view Type of Station based on Pollution Level
     
     $("#optradio1").click(function() {
-        map.addLayer(NOTgroupC_2019)
+        map.addLayer(notgroupC_2019)
         map.addLayer(groupC_2019)
-        map.removeLayer(NOTgroupC_2013)
+        map.removeLayer(notgroupC_2013)
         map.removeLayer(groupC_2013)
     });
     
     $("#optradio2").click(function() {
-        map.addLayer(NOTgroupC_2013)
+        map.addLayer(notgroupC_2013)
         map.addLayer(groupC_2013)
-        map.removeLayer(NOTgroupC_2019)
+        map.removeLayer(notgroupC_2019)
         map.removeLayer(groupC_2019)
     });
 
     $("#optradio3").click(function(e) {
         var val = e.target.value;
-        var layerName1 = 'NOTgroupC_'+val;
+        var layerName1 = 'notgroupC_'+val;
         var layerName2 = 'groupC_'+val;
-        map.removeLayer(NOTgroupC_2013);
+        map.removeLayer(notgroupC_2013);
         map.removeLayer(groupC_2013);
-        map.removeLayer(NOTgroupC_2019);
+        map.removeLayer(notgroupC_2019);
         map.removeLayer(groupC_2019);
         layers[layerName1].addTo(map);
         layers[layerName2].addTo(map);
@@ -184,11 +185,11 @@
     
     $("#optradio4").click(function(e) {
         var val = e.target.value;
-        var layerName1 = 'NOTgroupC_'+val;
+        var layerName1 = 'notgroupC_'+val;
         var layerName2 = 'groupC_'+val;
-        map.removeLayer(NOTgroupC_2013);
+        map.removeLayer(notgroupC_2013);
         map.removeLayer(groupC_2013);
-        map.removeLayer(NOTgroupC_2019);
+        map.removeLayer(notgroupC_2019);
         map.removeLayer(groupC_2019);
         layers[layerName1].addTo(map);
         layers[layerName2].addTo(map);
