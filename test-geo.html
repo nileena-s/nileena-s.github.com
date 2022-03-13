@@ -202,7 +202,7 @@
         onEachFeature: function (feature, layer) {
           layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
         }
-      }).addTo(map);
+      });
 
       var groupC_2019_temp = L.geoJson(data, {
         filter: function(feature, layer)  {
@@ -214,7 +214,7 @@
         onEachFeature: function (feature, layer) {
           layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
         }
-      }).addTo(map);
+      });
 
     var notgroupC_2013_temp = L.geoJson(data, {
       filter: function(feature, layer)  {
@@ -240,7 +240,7 @@
       }
     });
     
-    riv_layers[layer_name] = groupC_2013_temp;
+    riv_layers[layer_name] = notgroupC_2019_temp;
     
     }
     
@@ -301,7 +301,7 @@
         }
 
         $('select[name="riv_dropdown"]').change(function(){
-        if ($(this).val() == "Ganga"){
+        if ($(this).val() == "1"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
             map.removeLayer(notgroupC_2019);
@@ -358,7 +358,7 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-        if ($(this).val() == "Ganga"){
+        if ($(this).val() == "1"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
             map.removeLayer(notgroupC_2019);
