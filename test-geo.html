@@ -164,7 +164,7 @@
     
     var notgroupC_2019_2 = L.geoJson(data, {
       filter: function(feature, layer)  {
-        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && feature.properties.river=="GANGA");
+        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA"));
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, redLayerStyle);
@@ -176,7 +176,7 @@
     
     var groupC_2019_2 = L.geoJson(data, {
       filter: function(feature, layer)  {
-        return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && feature.properties.river=="GANGA");
+        return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA"));
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, blueLayerStyle);
@@ -188,7 +188,7 @@
 
     var notgroupC_2013_2 = L.geoJson(data, {
       filter: function(feature, layer)  {
-        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013" && feature.properties.river=="GANGA");
+        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA"));
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, redLayerStyle);
@@ -200,7 +200,7 @@
     
     var groupC_2013_2 = L.geoJson(data, {
       filter: function(feature, layer)  {
-        return (feature.properties.group == "Class C" && feature.properties.Year == "2013" && feature.properties.river=="GANGA");
+        return (feature.properties.group == "Class C" && feature.properties.Year == "2013" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA"));
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, blueLayerStyle);
