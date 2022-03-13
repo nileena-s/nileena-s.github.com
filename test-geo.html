@@ -162,6 +162,30 @@
       }
     });
     
+    var notgroupC_2019_2 = L.geoJson(data, {
+      filter: function(feature, layer)  {
+        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && feature.properties.river=="GANGA");
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, redLayerStyle);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+      }
+    }).addTo(map);
+    
+    var groupC_2019_2 = L.geoJson(data, {
+      filter: function(feature, layer)  {
+        return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && feature.properties.river=="GANGA");
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, blueLayerStyle);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+      }
+    }).addTo(map);
+    
     layers.notgroupC_2019 = notgroupC_2019;
     layers.groupC_2019 = groupC_2019;
     layers.notgroupC_2013 = notgroupC_2013;
@@ -205,8 +229,19 @@
         map.removeLayer(groupC_2019);
         layers[layerName1].addTo(map);
         layers[layerName2].addTo(map);
-
     });
+    
+    $('select[name="riv_dropdown"]').change(function(){
+    if ($(this).val() == "Ganga"){
+        map.removeLayer(notgroupC_2013);
+        map.removeLayer(groupC_2013);
+        map.removeLayer(notgroupC_2019);
+        map.removeLayer(groupC_2019);
+        map.addLayer(notgroupC_2019_2);
+        map.addLayer(notgroupC_2019_2);
+     }        
+    });
+
 
   });
   });
