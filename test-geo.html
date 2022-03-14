@@ -228,12 +228,10 @@
       }
     });
 
-    $.getJSON("river_list_13Mar.json",function(riv_list){
-      $.each(riv_list, function (key, val) {
-        var layer_name_nc = 'river'+val.no+'_nc';
-        var layer_name_c = 'river'+val.no+'_c';
-        var riv = val.river_select;
-        var riv_cond = val.river_condition;
+        var layer_name_nc = 'river'+'1'+'_nc';
+        var layer_name_c = 'river'+'1'+'_c';
+        var riv = 'Ganga';
+        var riv_cond = '(feature.properties.river==\"GANGA\" || feature.properties.river==\"RIVER GANGA\" || feature.properties.river==\"GANGA RIVER\")';
         var notgroupC_2019_temp = L.geoJson(data, {
           filter: function(feature, layer)  {
             return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && (riv_cond));
@@ -258,9 +256,7 @@
         });
         riv_layers[layer_name_nc] = notgroupC_2019_temp;
         riv_layers[layer_name_c] = groupC_2019_temp;
-      });
-    });
-    
+
     layers.notgroupC_2019 = notgroupC_2019;
     layers.groupC_2019 = groupC_2019;
     layers.notgroupC_2013 = notgroupC_2013;
