@@ -247,10 +247,10 @@
         return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA" || feature.properties.river=="GANGA RIVER"));
       },
       pointToLayer: function(feature, latlng) {
-        return L.circleMarker(latlng, redLayerStyle);
+        return L.circleMarker(latlng, blueLayerStyle);
       },
       onEachFeature: function (feature, layer) {
-        layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+        layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
       }
     });
     riv_layers.river1nc = notgroupC_2019_temp;
