@@ -101,12 +101,12 @@
   
   const riv_layers = {
     active: [],
-    river1_nc: new L.LayerGroup(),
-    river1_c: new L.LayerGroup(),
-    river2_nc: new L.LayerGroup(),
-    river2_c: new L.LayerGroup(),
-    river3_nc: new L.LayerGroup(),
-    river3_c: new L.LayerGroup()
+    river1nc: new L.LayerGroup(),
+    river1c: new L.LayerGroup(),
+    river2nc: new L.LayerGroup(),
+    river2c: new L.LayerGroup(),
+    river3nc: new L.LayerGroup(),
+    river3c: new L.LayerGroup()
   };    
     
   $(document).ready(function() {
@@ -228,34 +228,33 @@
       }
     });
 
-        var layer_name_nc = 'river'+'1'+'_nc';
-        var layer_name_c = 'river'+'1'+'_c';
-        var riv = 'Ganga';
-        var riv_cond = '(feature.properties.river==\"GANGA\" || feature.properties.river==\"RIVER GANGA\" || feature.properties.river==\"GANGA RIVER\")';
-        var notgroupC_2019_temp = L.geoJson(data, {
-          filter: function(feature, layer)  {
-            return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA" || feature.properties.river=="GANGA RIVER"));
-          },
-          pointToLayer: function(feature, latlng) {
-            return L.circleMarker(latlng, redLayerStyle);
-          },
-          onEachFeature: function (feature, layer) {
-            layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
-          }
-        }); 
-        var groupC_2019_temp = L.geoJson(data, {
-          filter: function(feature, layer)  {
-            return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA" || feature.properties.river=="GANGA RIVER"));
-          },
-          pointToLayer: function(feature, latlng) {
-            return L.circleMarker(latlng, redLayerStyle);
-          },
-          onEachFeature: function (feature, layer) {
-            layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
-          }
-        });
-        riv_layers.river1_nc = notgroupC_2019_temp;
-        riv_layers.river1_c = groupC_2019_temp;
+    var layer_name_nc = 'river'+'1'+'_nc';
+    var layer_name_c = 'river'+'1'+'_c';
+    var riv = 'Ganga';
+    var notgroupC_2019_temp = L.geoJson(data, {
+      filter: function(feature, layer)  {
+        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA" || feature.properties.river=="GANGA RIVER"));
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, redLayerStyle);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+      }
+    }); 
+    var groupC_2019_temp = L.geoJson(data, {
+      filter: function(feature, layer)  {
+        return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA" || feature.properties.river=="GANGA RIVER"));
+      },
+      pointToLayer: function(feature, latlng) {
+        return L.circleMarker(latlng, redLayerStyle);
+      },
+      onEachFeature: function (feature, layer) {
+        layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+      }
+    });
+    riv_layers.river1nc = notgroupC_2019_temp;
+    riv_layers.river1c = groupC_2019_temp;
 
     layers.notgroupC_2019 = notgroupC_2019;
     layers.groupC_2019 = groupC_2019;
@@ -290,7 +289,7 @@
         map.removeLayer(groupC_2013_2);
         map.removeLayer(notgroupC_2019_2);
         map.removeLayer(groupC_2019_2);
-        if($('#riv_dropdown :selected').val() == "1"){
+        if($('#riv_dropdown :selected').text() == "Ganga"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
             map.removeLayer(notgroupC_2019);
@@ -299,8 +298,8 @@
             map.removeLayer(groupC_2013_2);
             map.removeLayer(notgroupC_2019_2);
             map.removeLayer(groupC_2019_2);
-            riv_layers[river1_nc].addTo(map);
-            riv_layers[river1_c].addTo(map);
+            riv_layers[river1nc].addTo(map);
+            riv_layers[river1c].addTo(map);
         }
         else  {
             map.removeLayer(notgroupC_2013);
@@ -323,8 +322,8 @@
             map.removeLayer(groupC_2019);
             map.removeLayer(notgroupC_2013_2);
             map.removeLayer(groupC_2013_2);
-            riv_layers[river1_nc].addTo(map);
-            riv_layers[river1_c].addTo(map);
+            riv_layers[river1nc].addTo(map);
+            riv_layers[river1c].addTo(map);
          }
         else  {
             map.removeLayer(notgroupC_2013);
