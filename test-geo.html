@@ -231,6 +231,19 @@
     $.getJSON("river_list_13Mar.json",function(riv_list){
       $.each(riv_list, function (key, val) {
         var layer_name_nc = 'river'+val.no+'_nc';
+        var riv = val.river_select;
+        var riv_cond = val.river_condition;
+        var notgroupC_2019_temp = L.geoJson(data, {
+          filter: function(feature, layer)  {
+            return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && (riv_cond));
+          },
+          pointToLayer: function(feature, latlng) {
+            return L.circleMarker(latlng, redLayerStyle);
+          },
+          onEachFeature: function (feature, layer) {
+            layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+          }
+        });        
       });
     });
     
