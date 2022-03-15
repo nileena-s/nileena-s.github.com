@@ -355,9 +355,7 @@
         var val = e.target.value;
         var layerName1 = 'notgroupC_'+val;
         var layerName2 = 'groupC_'+val;
-        map.eachLayer(function (layer) {
-            if (baseLayer != layer._url){map.removeLayer(layer)};
-        });
+        riv_layers.clearLayers();
         if($('#riv_dropdown :selected').text() == "Ganga"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
@@ -382,9 +380,7 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-          map.eachLayer(function (layer) {
-              if (baseLayer != layer._url){map.removeLayer(layer)};
-          });        
+          riv_layers.clearLayers();       
           if ($(this).val() == "1"){
               map.removeLayer(notgroupC_2013);
               map.removeLayer(groupC_2013);
