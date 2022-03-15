@@ -294,9 +294,10 @@
         map.removeLayer(groupC_2013_2);
         map.removeLayer(notgroupC_2019_2);
         map.removeLayer(groupC_2019_2);
-        if($('#riv_dropdown :selected').attr('value') == "1"){
-            var l1 = "river1nc";
-            var l2 = "river1c";
+        if($('#riv_dropdown :selected').attr('value') !== "0"){
+            var sel = $('#riv_dropdown :selected').attr('value');
+            var l1 = 'river'+sel+'nc';
+            var l2 = 'river'+sel+'c';
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
             map.removeLayer(notgroupC_2019);
@@ -322,9 +323,10 @@
         }
 
         $('select[name="riv_dropdown"]').change(function(){
-        if ($(this).val() == "1"){
-            var l1 = "river1nc";
-            var l2 = "river1c";
+        if ($(this).val() !== "0"){
+            var sel = $(this).val();
+            var l1 = 'river'+sel+'nc';
+            var l2 = 'river'+sel+'c';
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
             map.removeLayer(notgroupC_2019);
