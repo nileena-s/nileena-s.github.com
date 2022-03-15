@@ -231,9 +231,10 @@
     var layer_name_nc = 'river'+'1'+'_nc';
     var layer_name_c = 'river'+'1'+'_c';
     var riv = 'Ganga';
+    var rive_condition = 'GANGA'
     var notgroupC_2019_temp = L.geoJson(data, {
       filter: function(feature, layer)  {
-        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA" || feature.properties.river=="GANGA RIVER"));
+        return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019" && (feature.properties.river == riv_condition));
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, redLayerStyle);
@@ -244,7 +245,7 @@
     }); 
     var groupC_2019_temp = L.geoJson(data, {
       filter: function(feature, layer)  {
-        return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && (feature.properties.river=="GANGA" || feature.properties.river=="RIVER GANGA" || feature.properties.river=="GANGA RIVER"));
+        return (feature.properties.group == "Class C" && feature.properties.Year == "2019" && (feature.properties.river == riv_condition));
       },
       pointToLayer: function(feature, latlng) {
         return L.circleMarker(latlng, blueLayerStyle);
