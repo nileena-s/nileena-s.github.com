@@ -76,7 +76,7 @@
   var map = L.map('map').setView([24.00, 77.00], 5);
             
   /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
-  var baseLayer = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     zoomControl : true,
     maxZoom: 18,
@@ -355,14 +355,10 @@
         var val = e.target.value;
         var layerName1 = 'notgroupC_'+val;
         var layerName2 = 'groupC_'+val;
-        riv_layers['river1nc'].clearLayers();
-        riv_layers['river1c'].clearLayers();
-        riv_layers['river2nc'].clearLayers();
-        riv_layers['river2c'].clearLayers();
-        riv_layers['river3nc'].clearLayers();
-        riv_layers['river3c'].clearLayers();
-        riv_layers['river4nc'].clearLayers();
-        riv_layers['river4c'].clearLayers();
+        map.removeLayer(notgroupC_2013);
+        map.removeLayer(groupC_2013);
+        map.removeLayer(notgroupC_2019);
+        map.removeLayer(groupC_2019);
         if($('#riv_dropdown :selected').text() == "Ganga"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
@@ -387,36 +383,28 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-          riv_layers['river1nc'].clearLayers();
-          riv_layers['river1c'].clearLayers();
-          riv_layers['river2nc'].clearLayers();
-          riv_layers['river2c'].clearLayers();
-          riv_layers['river3nc'].clearLayers();
-          riv_layers['river3c'].clearLayers();
-          riv_layers['river4nc'].clearLayers();
-          riv_layers['river4c'].clearLayers();
-          if ($(this).val() == "1"){
-              map.removeLayer(notgroupC_2013);
-              map.removeLayer(groupC_2013);
-              map.removeLayer(notgroupC_2019);
-              map.removeLayer(groupC_2019);
-              map.removeLayer(notgroupC_2019_2);
-              map.removeLayer(groupC_2019_2);
-              map.addLayer(notgroupC_2013_2);
-              map.addLayer(groupC_2013_2);
-           } 
-          else  {
-              map.removeLayer(notgroupC_2013);
-              map.removeLayer(groupC_2013);
-              map.removeLayer(notgroupC_2019);
-              map.removeLayer(groupC_2019);
-              map.removeLayer(notgroupC_2019_2);
-              map.removeLayer(groupC_2019_2);
-              map.removeLayer(notgroupC_2013_2);
-              map.removeLayer(groupC_2013_2);
-              layers[layerName1].addTo(map);
-              layers[layerName2].addTo(map);
-          }
+        if ($(this).val() == "1"){
+            map.removeLayer(notgroupC_2013);
+            map.removeLayer(groupC_2013);
+            map.removeLayer(notgroupC_2019);
+            map.removeLayer(groupC_2019);
+            map.removeLayer(notgroupC_2019_2);
+            map.removeLayer(groupC_2019_2);
+            map.addLayer(notgroupC_2013_2);
+            map.addLayer(groupC_2013_2);
+         } 
+        else  {
+            map.removeLayer(notgroupC_2013);
+            map.removeLayer(groupC_2013);
+            map.removeLayer(notgroupC_2019);
+            map.removeLayer(groupC_2019);
+            map.removeLayer(notgroupC_2019_2);
+            map.removeLayer(groupC_2019_2);
+            map.removeLayer(notgroupC_2013_2);
+            map.removeLayer(groupC_2013_2);
+            layers[layerName1].addTo(map);
+            layers[layerName2].addTo(map);
+        }
         });
     });
 
@@ -427,4 +415,3 @@
   </script>
 </body>
 </html>
-
