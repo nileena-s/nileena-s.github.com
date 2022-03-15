@@ -291,8 +291,8 @@
         map.removeLayer(notgroupC_2019_2);
         map.removeLayer(groupC_2019_2);
         if($('#riv_dropdown :selected').text() == "Ganga"){
-            var l1 = river1nc;
-            var l2 = river1c;
+            var l1 = "river1nc";
+            var l2 = "river1c";
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
             map.removeLayer(notgroupC_2019);
@@ -319,8 +319,8 @@
 
         $('select[name="riv_dropdown"]').change(function(){
         if ($(this).val() == "1"){
-            var l1 = river1nc;
-            var l2 = river1c;
+            var l1 = "river1nc";
+            var l2 = "river1c";
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
             map.removeLayer(notgroupC_2019);
