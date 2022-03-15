@@ -355,7 +355,14 @@
         var val = e.target.value;
         var layerName1 = 'notgroupC_'+val;
         var layerName2 = 'groupC_'+val;
-        riv_layers.clearLayers();
+        riv_layers['river1nc'].clearLayers();
+        riv_layers['river1c'].clearLayers();
+        riv_layers['river2nc'].clearLayers();
+        riv_layers['river2c'].clearLayers();
+        riv_layers['river3nc'].clearLayers();
+        riv_layers['river3c'].clearLayers();
+        riv_layers['river4nc'].clearLayers();
+        riv_layers['river4c'].clearLayers();
         if($('#riv_dropdown :selected').text() == "Ganga"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
@@ -380,7 +387,14 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-          riv_layers.clearLayers();       
+          riv_layers['river1nc'].clearLayers();
+          riv_layers['river1c'].clearLayers();
+          riv_layers['river2nc'].clearLayers();
+          riv_layers['river2c'].clearLayers();
+          riv_layers['river3nc'].clearLayers();
+          riv_layers['river3c'].clearLayers();
+          riv_layers['river4nc'].clearLayers();
+          riv_layers['river4c'].clearLayers();
           if ($(this).val() == "1"){
               map.removeLayer(notgroupC_2013);
               map.removeLayer(groupC_2013);
