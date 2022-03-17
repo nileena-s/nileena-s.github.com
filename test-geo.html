@@ -360,16 +360,14 @@
         map.removeLayer(notgroupC_2019);
         map.removeLayer(groupC_2019);
         $('select[name="riv_dropdown"]').change(function(){
-        for (var k = 1; k++; k < 2)  {
-          var name1 = 'river'+k+'nc';
-          var name2 = 'river'+k+'c';
+          var name1 = 'river'+'1'+'nc';
+          var name2 = 'river'+'1'+'c';
           map.removeLayer(riv_layers['river1nc']);
           map.removeLayer(riv_layers['river1c']);
           map.removeLayer(riv_layers['river2nc']);
           map.removeLayer(riv_layers['river2c']);
           map.removeLayer(riv_layers['river3nc']);
           map.removeLayer(riv_layers['river3c']);
-        }
         if($('#riv_dropdown :selected').text() == "Ganga"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
@@ -394,16 +392,14 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-        for (var k = 1; k++; k < 2)  {
-          var name1 = 'river'+k+'nc';
-          var name2 = 'river'+k+'c';
+          var name1 = 'river'+'1'+'nc';
+          var name2 = 'river'+'1'+'c';
           map.removeLayer(riv_layers['river1nc']);
           map.removeLayer(riv_layers['river1c']);
           map.removeLayer(riv_layers['river2nc']);
           map.removeLayer(riv_layers['river2c']);
           map.removeLayer(riv_layers['river3nc']);
           map.removeLayer(riv_layers['river3c']);
-        }
         if ($(this).val() == "1"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
