@@ -359,11 +359,12 @@
         map.removeLayer(groupC_2013);
         map.removeLayer(notgroupC_2019);
         map.removeLayer(groupC_2019);
-        var name1 = 'river1nc';
-        var name2 = 'river1c';
-        map.removeLayer(riv_layers[name1]);
-        map.removeLayer(rivelayers[name2]);
-        }
+        map.removeLayer(riv_layers['river1nc']);
+        map.removeLayer(riv_layers['river1c']);
+        map.removeLayer(riv_layers['river2nc']);
+        map.removeLayer(riv_layers['river2c']);
+        map.removeLayer(riv_layers['river3nc']);
+        map.removeLayer(riv_layers['river3c']);
         if($('#riv_dropdown :selected').text() == "Ganga"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
@@ -388,12 +389,12 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-        for (var j=1; j++; j<14)  {
-          var name1 = 'river'+j+'nc';
-          var name2 = 'river'+j+'c';
-          map.removeLayer(riv_layers[name1]);
-          map.removeLayer(riv_layers[name2]);
-        }
+        map.removeLayer(riv_layers['river1nc']);
+        map.removeLayer(riv_layers['river1c']);
+        map.removeLayer(riv_layers['river2nc']);
+        map.removeLayer(riv_layers['river2c']);
+        map.removeLayer(riv_layers['river3nc']);
+        map.removeLayer(riv_layers['river3c']);
         if ($(this).val() == "1"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
