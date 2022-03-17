@@ -359,20 +359,17 @@
         map.removeLayer(groupC_2013);
         map.removeLayer(notgroupC_2019);
         map.removeLayer(groupC_2019);
-        var name1 = 'river'+k+'nc';
-        var name2 = 'river'+k+'c';
-        map.removeLayer(riv_layers['river1nc']);
-        map.removeLayer(riv_layers['river1c']);
-        map.removeLayer(riv_layers['river2nc']);
-        map.removeLayer(riv_layers['river2c']);
-        map.removeLayer(riv_layers['river3nc']);
-        map.removeLayer(riv_layers['river3c']);
-        map.removeLayer(riv_layers['river1nc']);
-        map.removeLayer(riv_layers['river1c']);
-        map.removeLayer(riv_layers['river2nc']);
-        map.removeLayer(riv_layers['river2c']);
-        map.removeLayer(riv_layers['river3nc']);
-        map.removeLayer(riv_layers['river3c']);
+        $('select[name="riv_dropdown"]').change(function(){
+        for (var k = 1; k++; k < 3)  {
+          var name1 = 'river'+k+'nc';
+          var name2 = 'river'+k+'c';
+          map.removeLayer(riv_layers['river1nc']);
+          map.removeLayer(riv_layers['river1c']);
+          map.removeLayer(riv_layers['river2nc']);
+          map.removeLayer(riv_layers['river2c']);
+          map.removeLayer(riv_layers['river3nc']);
+          map.removeLayer(riv_layers['river3c']);
+        }
         if($('#riv_dropdown :selected').text() == "Ganga"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
@@ -397,14 +394,16 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-        var name1 = 'river'+k+'nc';
-        var name2 = 'river'+k+'c';
-        map.removeLayer(riv_layers['river1nc']);
-        map.removeLayer(riv_layers['river1c']);
-        map.removeLayer(riv_layers['river2nc']);
-        map.removeLayer(riv_layers['river2c']);
-        map.removeLayer(riv_layers['river3nc']);
-        map.removeLayer(riv_layers['river3c']);
+        for (var k = 1; k++; k < 3)  {
+          var name1 = 'river'+k+'nc';
+          var name2 = 'river'+k+'c';
+          map.removeLayer(riv_layers['river1nc']);
+          map.removeLayer(riv_layers['river1c']);
+          map.removeLayer(riv_layers['river2nc']);
+          map.removeLayer(riv_layers['river2c']);
+          map.removeLayer(riv_layers['river3nc']);
+          map.removeLayer(riv_layers['river3c']);
+        }
         if ($(this).val() == "1"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
