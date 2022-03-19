@@ -294,6 +294,10 @@
         map.removeLayer(groupC_2013_2);
         map.removeLayer(notgroupC_2019_2);
         map.removeLayer(groupC_2019_2);
+        map.removeLayer(riv_layers['river1nc']);
+        map.removeLayer(riv_layers['river1c']);
+        map.removeLayer(riv_layers['river2nc']);
+        map.removeLayer(riv_layers['river2c']);
         if($('#riv_dropdown :selected').attr('value') !== "0"){
             var sel = $('#riv_dropdown :selected').attr('value');
             var l1 = 'river'+sel+'nc';
@@ -323,31 +327,35 @@
         }
 
         $('select[name="riv_dropdown"]').change(function(){
-        if ($(this).val() !== "0"){
-            var sel = $(this).val();
-            var l1 = 'river'+sel+'nc';
-            var l2 = 'river'+sel+'c';
-            map.removeLayer(notgroupC_2013);
-            map.removeLayer(groupC_2013);
-            map.removeLayer(notgroupC_2019);
-            map.removeLayer(groupC_2019);
-            map.removeLayer(notgroupC_2013_2);
-            map.removeLayer(groupC_2013_2);
-            riv_layers[l1].addTo(map);
-            riv_layers[l2].addTo(map);
-         }
-        else  {
-            map.removeLayer(notgroupC_2013);
-            map.removeLayer(groupC_2013);
-            map.removeLayer(notgroupC_2019);
-            map.removeLayer(groupC_2019);
-            map.removeLayer(notgroupC_2013_2);
-            map.removeLayer(groupC_2013_2);
-            map.removeLayer(notgroupC_2019_2);
-            map.removeLayer(groupC_2019_2);
-            layers[layerName1].addTo(map);
-            layers[layerName2].addTo(map);
-        }        
+          map.removeLayer(riv_layers['river1nc']);
+          map.removeLayer(riv_layers['river1c']);
+          map.removeLayer(riv_layers['river2nc']);
+          map.removeLayer(riv_layers['river2c']);
+          if ($(this).val() !== "0"){
+              var sel = $(this).val();
+              var l1 = 'river'+sel+'nc';
+              var l2 = 'river'+sel+'c';
+              map.removeLayer(notgroupC_2013);
+              map.removeLayer(groupC_2013);
+              map.removeLayer(notgroupC_2019);
+              map.removeLayer(groupC_2019);
+              map.removeLayer(notgroupC_2013_2);
+              map.removeLayer(groupC_2013_2);
+              riv_layers[l1].addTo(map);
+              riv_layers[l2].addTo(map);
+           }
+          else  {
+              map.removeLayer(notgroupC_2013);
+              map.removeLayer(groupC_2013);
+              map.removeLayer(notgroupC_2019);
+              map.removeLayer(groupC_2019);
+              map.removeLayer(notgroupC_2013_2);
+              map.removeLayer(groupC_2013_2);
+              map.removeLayer(notgroupC_2019_2);
+              map.removeLayer(groupC_2019_2);
+              layers[layerName1].addTo(map);
+              layers[layerName2].addTo(map);
+          }        
         });
     });
     
