@@ -359,7 +359,7 @@
         map.removeLayer(groupC_2013);
         map.removeLayer(notgroupC_2019);
         map.removeLayer(groupC_2019);
-        for (var k = 1; k++; k < 15)  {
+        for (let k = 1; k < 15; k++)  {
           var name1 = 'river' + k + 'nc';
           var name2 = 'river' + k + 'c';
           map.removeLayer(riv_layers[name1]);
@@ -389,7 +389,7 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-          for (var k = 1; k++; k < 15)  {
+          for (let k = 1; k < 15; k++)  {
             var name1 = 'river' + k + 'nc';
             var name2 = 'river' + k + 'c';
             map.removeLayer(riv_layers[name1]);
