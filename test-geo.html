@@ -246,8 +246,8 @@
           }
           if($('#riv_dropdown :selected').attr('value') !== "0"){
               var sel = $('#riv_dropdown :selected').attr('value');
-              var l1 = 'river'+sel+'nc_2019';
-              var l2 = 'river'+sel+'c_2019';
+              var l1 = 'river'+sel+'nc_'+val;
+              var l2 = 'river'+sel+'c_'+val;
               map.removeLayer(notgroupC_2013);
               map.removeLayer(groupC_2013);
               map.removeLayer(notgroupC_2019);
@@ -277,8 +277,8 @@
             }
             if ($(this).val() !== "0"){
                 var sel = $(this).val();
-                var l1 = 'river'+sel+'nc_2019';
-                var l2 = 'river'+sel+'c_2019';
+                var l1 = 'river'+sel+'nc_'+val;
+                var l2 = 'river'+sel+'c_'+val;
                 map.removeLayer(notgroupC_2013);
                 map.removeLayer(groupC_2013);
                 map.removeLayer(notgroupC_2019);
