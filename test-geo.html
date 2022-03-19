@@ -86,9 +86,6 @@
     accessToken: 'pk.eyJ1IjoiaW5kaWFzcGVuZCIsImEiOiJjbDA0ODZ2dTkwODYxM2ludGJiZTVqYjl2In0.2Hr6ByYsG-UumMoJiaCAFQ'
   }).addTo(map);
   
-  $.getJSON("river_list_13Mar.json",function(list){
-  const river_list = list;
-  });
     
   // Create an object to keep track of active layers and each layer with its markers
   const layers = {
@@ -98,16 +95,7 @@
     notgroupC_2013: new L.LayerGroup(),
     groupC_2013: new L.LayerGroup()
   };
-  
-  const riv_layers = {
-    active: [],
-    river1nc: new L.LayerGroup(),
-    river1c: new L.LayerGroup(),
-    river2nc: new L.LayerGroup(),
-    river2c: new L.LayerGroup(),
-    river3nc: new L.LayerGroup(),
-    river3c: new L.LayerGroup()
-  };    
+     
     
   $(document).ready(function() {
   // loading GeoJSON file - Here my html and river-classC-test1-5mar.geojson file resides in same folder
