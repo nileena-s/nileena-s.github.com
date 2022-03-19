@@ -359,14 +359,12 @@
         map.removeLayer(groupC_2013);
         map.removeLayer(notgroupC_2019);
         map.removeLayer(groupC_2019);
-        var name1 = "river1nc";
-        var name2 = "river1c";
-        var name3 = "river2nc";
-        var name4 = "river2c";
-        map.removeLayer(riv_layers[name1]);
-        map.removeLayer(riv_layers[name2]);
-        map.removeLayer(riv_layers[name3]);
-        map.removeLayer(riv_layers[name4]);
+        for (var k = 1; k++; k < 15)  {
+          var name1 = 'river' + k + 'nc';
+          var name2 = 'river' + k + 'c';
+          map.removeLayer(riv_layers[name1]);
+          map.removeLayer(riv_layers[name2]);
+        }
         if($('#riv_dropdown :selected').text() == "Ganga"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
@@ -391,14 +389,12 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-          var name1 = "river1nc";
-          var name2 = "river1c";
-          var name3 = "river2nc";
-          var name4 = "river2c";
-          map.removeLayer(riv_layers[name1]);
-          map.removeLayer(riv_layers[name2]);
-          map.removeLayer(riv_layers[name3]);
-          map.removeLayer(riv_layers[name4]);
+          for (var k = 1; k++; k < 15)  {
+            var name1 = 'river' + k + 'nc';
+            var name2 = 'river' + k + 'c';
+            map.removeLayer(riv_layers[name1]);
+            map.removeLayer(riv_layers[name2]);
+          }
           if ($(this).val() == "1"){
               map.removeLayer(notgroupC_2013);
               map.removeLayer(groupC_2013);
