@@ -359,7 +359,6 @@
         map.removeLayer(groupC_2013);
         map.removeLayer(notgroupC_2019);
         map.removeLayer(groupC_2019);
-        riv_layers.eachLayer(function(layer) { map.removeLayer(layer);});
         if($('#riv_dropdown :selected').text() == "Ganga"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
@@ -384,7 +383,6 @@
         }
       
         $('select[name="riv_dropdown"]').change(function(){
-        riv_layers.eachLayer(function(layer) { map.removeLayer(layer);});
         if ($(this).val() == "1"){
             map.removeLayer(notgroupC_2013);
             map.removeLayer(groupC_2013);
