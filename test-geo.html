@@ -38,8 +38,8 @@
   <button type="button" id="classC" class="btn btn-primary">Class C</button>
   <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>-->
 
-  <label class="radio-inline"><input type="radio" name="optradio1" id="optradio" value="2019">2019</label>
-  <label class="radio-inline"><input type="radio" name="optradio2" id="optradio" value="2013">2013</label>
+  <label class="radio-inline"><input type="radio" name="optradio" id="optradio1" value="2019">2019</label>
+  <label class="radio-inline"><input type="radio" name="optradio" id="optradio2" value="2013">2013</label>
 
   </div>
   
@@ -226,7 +226,7 @@
       // The JavaScript below is for buttons to view Type of Station based on Pollution Level
 
 
-      $("#optradio").click(function(e) {
+      $("#input[name='optradio']").click(function(e) {
           var val = e.target.value;
           var layerName1 = 'notgroupC_'+val;
           var layerName2 = 'groupC_'+val;
