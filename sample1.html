@@ -1,12 +1,21 @@
 <html>
   <body>
     <style>
+        /* At screens over 680px wide, adjust the width & position of the embed & captions to sit alongside each other */
+        
+        /* Adjust these dimensions to change the width/proportion of captions vs. embed on the page  */
+        @media screen and (min-width: 680px) {
+            #my-wrapper {
+                margin-left: 35vw;
+                width: 60vw;
+            }
       .fl-scrolly-step {
+          margin-left: -35vw !important;
+          width: 25vw !important;
           background: rgba(48, 48, 48, 0.9) !important;
           color: #ffffff !important;
           border-radius: 2 !important;
           font-family: "Calibri", sans-serif !important;
-          width: 70% !important;
           text-align: left !important;
       }
       .invisible {
