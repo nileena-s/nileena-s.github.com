@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>river-tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+
+  <!-- Load Leaflet code library: see http://leafletjs.com/download.html -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="">
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+  
+  <!-- Load jQuery and PapaParse to read data from a CSV file -->
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+  
+  <!-- Bootstrap for button -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+
+  <!-- Position the map and title with Cascading Style Sheet (CSS) -->
+  <style>
+  #map { position: absolute; width:690px; height:780px; }
+  #map-title { position: relative; margin-top: 10px; margin-left: 50px; float: left; background: white; border: 2px solid rgba(0,0,0,0.2); padding: 6px 8px; font-family: Helvetica; font-weight: bold; font-size: 24px; z-index: 800; }  
+  radio { position: relative; margin-top: 10px; }
+      
+  </style>
+  
+</head>
+<body>
+  
+    <!-- Button -->
+  <div class="btn-group">
+  <!--<button type="button" id="all" class="btn btn-primary">All Water Stations</button>
+  <button type="button" id="classC" class="btn btn-primary">Class C</button>
+  <button type="button" id="nclassC" class="btn btn-primary">Polluted</button>-->
+
+  <label class="radio-inline"><input type="radio" name="optradio" id="optradio1" value="2019" checked>2019</label>
+  <label class="radio-inline"><input type="radio" name="optradio" id="optradio2" value="2013">2013</label>
+
+  </div>
+  
+  <select id="riv_dropdown" name="riv_dropdown" class="dropdown">
+      <option value="0">All Rivers</option>
+      <option value="1">Ganga</option>
+      <option value="2">Cauvery</option>
+      <option value="3">Beas</option>
+      <option value="4">Godavari</option>
+      <option value="5">Sutlej</option>
+      <option value="6">Yamuna</option>
+      <option value="7">Mahanadi</option>
+      <option value="8">Krishna</option>
+      <option value="9">Brahmani</option>
+      <option value="10">Gomti</option>
+      <option value="11">Tapi</option>
+      <option value="12">Sone</option>
+      <option value="13">Tungabhadra</option>
+      <option value="14">Subarnarekha</option>
+  </select>
+  
+
+  <!-- Display the map and title with HTML division tags  -->
+  <div id="map-title">River Tracker</div>
+  <div id="map"></div>
+ 
+   
+  <!-- Create the interactive map content with JavaScript (.js) -->
+  <script>
+  
+  /* Set up the initial map center and zoom level */    
+  var map = L.map('map').setView([23.00, 81.00], 5);
+            
+  /* display basemap tiles -- see others at https://leaflet-extras.github.io/leaflet-providers/preview/ */
+  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    zoomControl : true,
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoiaW5kaWFzcGVuZCIsImEiOiJjbDA0ODZ2dTkwODYxM2ludGJiZTVqYjl2In0.2Hr6ByYsG-UumMoJiaCAFQ'
+  }).addTo(map);
+  
+    
+  // Create an object to keep track of active layers and each layer with its markers
+  const layers = {
+    active: [],
+    notgroupC_2019: new L.LayerGroup(),
+    groupC_2019: new L.LayerGroup(),
+    notgroupC_2013: new L.LayerGroup(),
+    groupC_2013: new L.LayerGroup()
+  };
+
+  const riv_layers = {
+    active: [],
+    river1nc_2019: new L.LayerGroup(),
+    river1c_2019: new L.LayerGroup(),
+    river2nc_2019: new L.LayerGroup(),
+    river2c_2019: new L.LayerGroup(),
+    river3nc_2019: new L.LayerGroup(),
+    river3c_2019: new L.LayerGroup(),
+    river1nc_2013: new L.LayerGroup(),
+    river1c_2013: new L.LayerGroup(),
+    river2nc_2013: new L.LayerGroup(),
+    river2c_2013: new L.LayerGroup(),
+    river3nc_2013: new L.LayerGroup(),
+    river3c_2013: new L.LayerGroup()
+  }; 
+     
+    
+  $(document).ready(function() {
+    // loading GeoJSON file - Here my html and river-classC-test1-5mar.geojson file resides in same folder
+    $.getJSON("river-classC-2019-13-6Mar.geojson",function(data){
+      // create an object with a list of options to style the circle marker
+      // see http://leafletjs.com/reference-1.3.0.html#path for additional options
+      var redLayerStyle = {
+        stroke: false,
+        color: "red",
+        fillColor: "#f03",
+        fillOpacity: 0.5,
+        radius: 4
+      };
+
+      var blueLayerStyle = {
+        stroke: false,
+        color: "blue",
+        fillColor: "#00f",
+        fillOpacity: 0.5,
+        radius: 4
+      };
+
+
+      // create the GeoJSON layer from the myLayerData object (not shown in this snippet)
+      var notgroupC_2019 = L.geoJson(data, {
+        filter: function(feature, layer)  {
+          return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2019");
+        },
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, redLayerStyle);
+        },
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+        }
+      }).addTo(map);
+
+      var groupC_2019 = L.geoJson(data, {
+        filter: function(feature, layer)  {
+          return (feature.properties.group == "Class C" && feature.properties.Year == "2019");
+        },
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, blueLayerStyle);
+        },
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+        }
+      }).addTo(map);
+
+      var notgroupC_2013 = L.geoJson(data, {
+        filter: function(feature, layer)  {
+          return (feature.properties.group == "NOT Class C" && feature.properties.Year == "2013");
+        },
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, redLayerStyle);
+        },
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+        }
+      });
+
+      var groupC_2013 = L.geoJson(data, {
+        filter: function(feature, layer)  {
+          return (feature.properties.group == "Class C" && feature.properties.Year == "2013");
+        },
+        pointToLayer: function(feature, latlng) {
+          return L.circleMarker(latlng, blueLayerStyle);
+        },
+        onEachFeature: function (feature, layer) {
+          layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>   '+feature.properties.Year);
+        }
+      });
+
+
+      $.getJSON("river_list_13Mar.json",function(riv_list)  {
+        $.each(riv_list, function (key, val)  {
+          for (let year_list = 2019; year_list>2012; year_list=year_list-6) {
+            var layer_name_nc = 'river'+val.no+'nc_'+year_list;
+            var layer_name_c = 'river'+val.no+'c_'+year_list;
+            var riv = val.river_select;
+            var riv_condition = val.river_condition;
+            var notgroupC_year_temp = L.geoJson(data, {
+              filter: function(feature, layer)  {
+                return (feature.properties.group == "NOT Class C" && feature.properties.Year == year_list && (feature.properties.river == riv_condition));
+              },
+              pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, redLayerStyle);
+              },
+              onEachFeature: function (feature, layer) {
+                layer.bindPopup('<font color="red"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>');
+              }
+            }); 
+            var groupC_year_temp = L.geoJson(data, {
+              filter: function(feature, layer)  {
+                return (feature.properties.group == "Class C" && feature.properties.Year == year_list && (feature.properties.river == riv_condition));
+              },
+              pointToLayer: function(feature, latlng) {
+                return L.circleMarker(latlng, blueLayerStyle);
+              },
+              onEachFeature: function (feature, layer) {
+                layer.bindPopup('<font color="blue"><h4><u>River: '+feature.properties.river+'</h4> </u><h4>Location: '+feature.properties.Title+'</h4><p><h4> Year:'+feature.properties.Year+'</p></h4></font>');
+              }
+            });
+            riv_layers[layer_name_nc] = notgroupC_year_temp;
+            riv_layers[layer_name_c] = groupC_year_temp;
+          }
+        });
+      });
+
+      layers.notgroupC_2019 = notgroupC_2019;
+      layers.groupC_2019 = groupC_2019;
+      layers.notgroupC_2013 = notgroupC_2013;
+      layers.groupC_2013 = groupC_2013;
+
+      // The JavaScript below is for buttons to view Type of Station based on Pollution Level
+
+
+      $("input[name='optradio']").click(function(e) {
+          var val = e.target.value;
+          var layerName1 = 'notgroupC_'+val;
+          var layerName2 = 'groupC_'+val;
+          map.removeLayer(notgroupC_2013);
+          map.removeLayer(groupC_2013);
+          map.removeLayer(notgroupC_2019);
+          map.removeLayer(groupC_2019);
+          for (let k = 1; k < 15; k++)  {
+            var name1 = 'river' + k + 'nc_2019';
+            var name2 = 'river' + k + 'c_2019';
+            var name3 = 'river' + k + 'nc_2013';
+            var name4 = 'river' + k + 'c_2013';
+            map.removeLayer(riv_layers[name1]);
+            map.removeLayer(riv_layers[name2]);
+            map.removeLayer(riv_layers[name3]);
+            map.removeLayer(riv_layers[name4]);
+          }
+          if($('#riv_dropdown :selected').attr('value') !== "0"){
+              var sel = $('#riv_dropdown :selected').attr('value');
+              var l1 = 'river'+sel+'nc_'+val;
+              var l2 = 'river'+sel+'c_'+val;
+              map.removeLayer(notgroupC_2013);
+              map.removeLayer(groupC_2013);
+              map.removeLayer(notgroupC_2019);
+              map.removeLayer(groupC_2019);
+              riv_layers[l1].addTo(map);
+              riv_layers[l2].addTo(map);
+          }
+          else  {
+              map.removeLayer(notgroupC_2013);
+              map.removeLayer(groupC_2013);
+              map.removeLayer(notgroupC_2019);
+              map.removeLayer(groupC_2019);
+              layers[layerName1].addTo(map);
+              layers[layerName2].addTo(map);
+          }
+
+          $('select[name="riv_dropdown"]').change(function(){
+            for (let k = 1; k < 15; k++)  {
+              var name1 = 'river' + k + 'nc_2019';
+              var name2 = 'river' + k + 'c_2019';
+              var name3 = 'river' + k + 'nc_2013';
+              var name4 = 'river' + k + 'c_2013';
+              map.removeLayer(riv_layers[name1]);
+              map.removeLayer(riv_layers[name2]);
+              map.removeLayer(riv_layers[name3]);
+              map.removeLayer(riv_layers[name4]);
+            }
+            if ($(this).val() !== "0"){
+                var sel = $(this).val();
+                var l1 = 'river'+sel+'nc_'+val;
+                var l2 = 'river'+sel+'c_'+val;
+                map.removeLayer(notgroupC_2013);
+                map.removeLayer(groupC_2013);
+                map.removeLayer(notgroupC_2019);
+                map.removeLayer(groupC_2019);
+                riv_layers[l1].addTo(map);
+                riv_layers[l2].addTo(map);
+             }
+            else  {
+                map.removeLayer(notgroupC_2013);
+                map.removeLayer(groupC_2013);
+                map.removeLayer(notgroupC_2019);
+                map.removeLayer(groupC_2019);
+                layers[layerName1].addTo(map);
+                layers[layerName2].addTo(map);
+            }        
+          });
+      });
+    });
+  });
+   
+  </script>
+</body>
+</html>
